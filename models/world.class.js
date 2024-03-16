@@ -50,12 +50,8 @@ class World {
         if (mo.otherDirection) {
           this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-        this.ctx.beginPath();
-        this.ctx.lineWidth = '5';
-        this.ctx.strokeStyle = 'deeppink';
-        this.ctx.rect(mo.x, mo.y, mo.x + mo.width, mo.y + mo.height);
-        this.ctx.stroke();
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
           this.flipImageBack(mo);
         }
