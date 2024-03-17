@@ -8,6 +8,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -38,9 +39,12 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
 
+        this.ctx.translate(this.camera_x, 0); //Back
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0); //Forwards
+        
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
@@ -65,6 +69,7 @@ class World {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+
         if (mo.otherDirection) {
           this.flipImageBack(mo);
         }
