@@ -21,4 +21,3 @@ class CollectableCoin extends MovableObject {
   }
 }
 
-}
