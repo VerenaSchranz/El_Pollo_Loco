@@ -9,6 +9,13 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+
+
+
+
+
+
+    
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
