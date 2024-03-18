@@ -45,8 +45,19 @@ class World {
             this.statusBar.setPercentage(this.character.energy);
           }
         });
+        this.level.collectableCoins.forEach((collectableCoins, index) => {
+          if( this.character.isColliding(collectableCoins)) {
+            console.log(world.level.collectableCoins);
+            this.character.addedCoins(index);
+            collectableCoins.collectableCoin.splice(index, 1);
+            console.log(world.level.collectableCoins);
+          }
+        });
     }
-  
+
+    addingCoin(collectableCoin, index) {
+      this.addedCoins.push({ coin: collectableCoin, index: index });
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
