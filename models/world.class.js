@@ -55,14 +55,6 @@ class World {
             console.log(world.addedCoins);
           }
         });
-        this.level.collectableBottle.forEach((bottles, index) => {
-          if( this.character.isColliding(bottles)) {
-            this.addedCoins.push({ coin: bottles, index: index });
-            this.level.collectableCoins.splice(index, 1);
-            console.log(world.level.collectableBottles);
-            console.log(world.addedBottles);
-          }
-        })
         }
 
     draw() {
