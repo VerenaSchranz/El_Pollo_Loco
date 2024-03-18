@@ -21,3 +21,26 @@ class CollectableCoin extends MovableObject {
   }
 }
 
+class CollectableBottle extends MovableObject {
+  height = 120;
+  width = 120;
+  x = 300;
+  y = 330;
+  IMAGES_BOTTLES = [
+    'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
+    'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
+  ];
+
+  constructor() {
+    super().loadImage(this.IMAGES_BOTTLES[0]);
+    this.loadImages(this.IMAGES_BOTTLES);
+    this.animate();
+  }
+  
+  animate() {
+    setInterval(() => {
+      this.playAnimation(this.IMAGES_BOTTLES);
+    }, 300);
+  }
+}
+
