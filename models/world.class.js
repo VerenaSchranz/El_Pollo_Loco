@@ -10,6 +10,8 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     collectableCoins = level1.collectableCoins;
+    addedCoins = [];
+    addedBottles = [];
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -45,8 +47,23 @@ class World {
             this.statusBar.setPercentage(this.character.energy);
           }
         });
-    }
-  
+        this.level.collectableCoins.forEach((coins, index) => {
+          if( this.character.isColliding(coins)) {
+            this.addedCoins.push({ coin: coins, index: index });
+            this.level.collectableCoins.splice(index, 1);
+            console.log(world.level.collectableCoins);
+            console.log(world.addedCoins);
+          }
+        });
+        this.level.collectableBottle.forEach((bottles, index) => {
+          if( this.character.isColliding(bottles)) {
+            this.addedCoins.push({ coin: bottles, index: index });
+            this.level.collectableCoins.splice(index, 1);
+            console.log(world.level.collectableBottles);
+            console.log(world.addedBottles);
+          }
+        })
+        }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
