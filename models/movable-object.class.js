@@ -4,6 +4,8 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     accleration = 2.5;
     energy = 100;
+    energyBottle = 0;
+    energyCoin = 0;
     lastHit = 0;
     enemyStatus = true;
 
@@ -44,6 +46,19 @@ class MovableObject extends DrawableObject {
         this.energy = 0;
       } else {
         this.lastHit = new Date().getTime();
+      }
+    }
+    addEnergyBottle() {
+      this.energyBottle += 5;
+      if(this.energyBottle < 100) {
+        this.energyBottle = 100;
+      }
+    }
+
+    addEnergyCoin() {
+      this.energyCoin += 5;
+      if(this.energyCoin < 100) {
+        this.energyCoin = 100;
       }
     }
     
