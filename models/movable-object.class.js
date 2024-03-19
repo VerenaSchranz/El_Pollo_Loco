@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     accleration = 2.5;
     energy = 100;
+    energyBottle = 0;
     lastHit = 0;
 
     applyGravity() {
@@ -38,6 +39,12 @@ class MovableObject extends DrawableObject {
         this.energy = 0;
       } else {
         this.lastHit = new Date().getTime();
+      }
+    }
+    addEnergy() {
+      this.energyBottle += 5;
+      if(this.energyBottle < 100) {
+        this.energyBottle = 100;
       }
     }
     
