@@ -19,7 +19,6 @@ class StatusBar extends DrawableObject {
     this.width = 200;
     this.height = 60;
     this.setPercentage(100);
-    this.setPercentageBottle(0);
   }
 
   //setPercentage(50);
@@ -77,18 +76,18 @@ class StatusBarBottle extends DrawableObject {
   }
 
 resolveImageIndexBottle() {
-   if(this.percentageBottle == 100) {
-     return 5; 
-    } else if (this.percentageBottle > 80) {
-      return 4;
-    } else if (this.percentageBottle > 60) {
-      return 3;
-    } else if (this.percentageBottle > 40) {
-      return 2;
+   if(this.percentageBottle == 0) {
+     return 0; 
     } else if (this.percentageBottle > 20) {
       return 1;
+    } else if (this.percentageBottle > 40) {
+      return 2;
+    } else if (this.percentageBottle > 60) {
+      return 3;
+    } else if (this.percentageBottle > 80) {
+      return 4;
     } else {
-      return 0;
+      return 5;
     }
   }
 }
