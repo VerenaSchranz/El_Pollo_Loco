@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
+
     applyGravity() {
         setInterval(()  => {
             if(this.isAboveGround() || this.speedY > 0 ){
@@ -30,6 +31,14 @@ class MovableObject extends DrawableObject {
       this.y + this.height > mo.y &&
       this.x < mo.x &&
       this.y < mo.y + mo.height;
+      if( this.x + this.width > mo.x) {
+        return console.log('Pepe Huhn aua')
+      }
+    }
+
+    // character.isColliding(chicken Head);
+    isCollidingTop(mo) {
+      return  this.x + this.width > mo.x
     }
     
     hit() {

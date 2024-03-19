@@ -47,6 +47,9 @@ class World {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);
           }
+          if ( this.character.isCollidingTop(enemy)) {
+            console.log('character hits chicken');
+          }
         });
         this.level.collectableCoins.forEach((coins, index) => {
           if( this.character.isColliding(coins)) {
@@ -58,8 +61,6 @@ class World {
           if( this.character.isColliding(bottles)) {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.level.collectableBottles.splice(index, 1);
-            console.log(world.level.collectableBottles);
-            console.log(world.addedBottles);
           }
         });
       }
