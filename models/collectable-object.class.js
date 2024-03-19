@@ -8,6 +8,14 @@ class CollectableCoin extends MovableObject {
     'img/8_coin/coin_2.png'
   ];
 
+  offset = {
+    top: 50, 
+    bottom: 100, 
+    left: 50, 
+    right: 50, 
+  }; 
+
+
   constructor() {
     super().loadImage(this.IMAGES_COINS[0]);
     this.loadImages(this.IMAGES_COINS);
@@ -26,6 +34,14 @@ class CollectableBottle extends MovableObject {
   width = 120;
   x = 300;
   y = 330;
+
+  offset = {
+    top: 15, 
+    bottom: 30, 
+    left: 50, 
+    right: 50, 
+  }; 
+
   IMAGES_BOTTLES = [
     'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
     'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
