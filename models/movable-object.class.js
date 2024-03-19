@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     accleration = 2.5;
     energy = 100;
     lastHit = 0;
-
+    enemyStatus = true;
 
     applyGravity() {
         setInterval(()  => {
@@ -24,6 +24,10 @@ class MovableObject extends DrawableObject {
       }
     }
 
+    setEnemyStatus() {
+      return enemyStatus = false;
+      //sterben animate noch rein
+    }
 
     // character.isColliding(chicken);
     isColliding(mo) {
@@ -37,7 +41,7 @@ class MovableObject extends DrawableObject {
     }
 
     // character.isColliding(chicken Head);
-    isCollidingTop(mo) {
+    hitEnemyTop(mo) {
       return  this.x + this.width > mo.x
     }
     

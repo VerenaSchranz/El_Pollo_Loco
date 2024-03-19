@@ -33,6 +33,7 @@ class World {
       setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
+      this.checkCollisionJump();
     }, 200);
   }
   checkThrowObjects() {
@@ -47,9 +48,6 @@ class World {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);
           }
-          if ( this.character.isCollidingTop(enemy)) {
-            console.log('character hits chicken');
-          }
         });
         this.level.collectableCoins.forEach((coins, index) => {
           if( this.character.isColliding(coins)) {
@@ -61,6 +59,14 @@ class World {
           if( this.character.isColliding(bottles)) {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.level.collectableBottles.splice(index, 1);
+          }
+        });
+      }
+      checkCollisionJump() { 
+        this.level.enemies.forEach((enemy, index) => {
+          if( this.character.hitEnemyTop(enemy, index) ) {
+            enemy.enemyStatus = false;
+            console.log('jump läuft')
           }
         });
       }
