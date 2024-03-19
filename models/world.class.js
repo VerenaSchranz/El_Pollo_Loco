@@ -9,6 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    statusBarBottle = new StatusBarBottle();
     collectableCoins = level1.collectableCoins;
     collectableBottles = level1.collectableBottles;
     addedCoins = [];
@@ -58,8 +59,8 @@ class World {
           if( this.character.isColliding(bottles)) {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.level.collectableBottles.splice(index, 1);
-            console.log(world.level.collectableBottles);
-            console.log(world.addedBottles);
+ /*            console.log(world.level.collectableBottles);
+            console.log(world.addedBottles); */
           }
         });
       }
