@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     energyBottle = 0;
     energyCoin = 0;
     lastHit = 0;
+    enemyStatus = true;
 
     applyGravity() {
         setInterval(()  => {
@@ -25,13 +26,18 @@ class MovableObject extends DrawableObject {
       }
     }
 
-
     // character.isColliding(chicken);
     isColliding(mo) {
       return this.x + this.width > mo.x &&
       this.y + this.height > mo.y &&
       this.x < mo.x &&
       this.y < mo.y + mo.height;
+
+    }
+
+    // character.isColliding(chicken Head);
+    hitEnemyTop(mo) {
+      return  this.x + this.width > mo.x
     }
     
     hit() {
@@ -59,7 +65,6 @@ class MovableObject extends DrawableObject {
     isDead() {
       return this.energy == 0;
     }
-
     isHurt() {
       let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
       timepassed = timepassed / 1000;

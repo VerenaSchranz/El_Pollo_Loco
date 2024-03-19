@@ -35,6 +35,7 @@ class World {
       setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects();
+      this.checkCollisionJump();
     }, 200);
   }
   checkThrowObjects() {
@@ -64,6 +65,14 @@ class World {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
             this.level.collectableBottles.splice(index, 1);
+          }
+        });
+      }
+      checkCollisionJump() { 
+        this.level.enemies.forEach((enemy, index) => {
+          if( this.character.hitEnemyTop(enemy, index) ) {
+            enemy.enemyStatus = false;
+            console.log('jump läuft')
           }
         });
       }
