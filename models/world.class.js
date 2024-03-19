@@ -14,6 +14,7 @@ class World {
     addedCoins = [];
     addedBottles = [];
     throwableObjects = [];
+    fullscreen = new Fullscreen();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -73,6 +74,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); //Back
         // ----- Space for fixed objects ----- //
         this.addToMap(this.statusBar);
+        this.addToMap(this.fullscreen);
         this.ctx.translate(this.camera_x, 0); //Forwards
 
         this.addToMap(this.character);

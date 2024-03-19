@@ -43,3 +43,8 @@ resolveImageIndex() {
     }
   }
 }
+
+class Fullscreen extends DrawableObject {
+
+  
+}
