@@ -6,7 +6,7 @@ class DrawableObject {
   y = 280;
   height = 150;
   width = 100;
-  
+  offset = {top: 0, bottom: 0, left: 0, right: 0, };
 
 loadImage(path) {
   this.img = new Image(); // this.img = document.getElementbyId('image') <img id="image" src="">
@@ -22,8 +22,12 @@ drawFrame(ctx) {
     ctx.beginPath();
     ctx.lineWidth = '5';
     ctx.strokeStyle = 'deeppink';
-    ctx.rect(this.x, this.y, this.width, this.height);
-    ctx.stroke();
+    ctx.rect(   
+      this.x + this.offset.left,
+      this.y + this.offset.top,
+      this.width - this.offset.right - this.offset.left,
+      this.height - this.offset.bottom);
+    ctx.stroke(); // Rahmen zeichnen
   }
 }
 
