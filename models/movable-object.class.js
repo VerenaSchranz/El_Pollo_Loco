@@ -24,20 +24,13 @@ class MovableObject extends DrawableObject {
       }
     }
 
-    setEnemyStatus() {
-      return enemyStatus = false;
-      //sterben animate noch rein
-    }
-
     // character.isColliding(chicken);
     isColliding(mo) {
       return this.x + this.width > mo.x &&
       this.y + this.height > mo.y &&
       this.x < mo.x &&
       this.y < mo.y + mo.height;
-      if( this.x + this.width > mo.x) {
-        return console.log('Pepe Huhn aua')
-      }
+
     }
 
     // character.isColliding(chicken Head);
@@ -57,7 +50,6 @@ class MovableObject extends DrawableObject {
     isDead() {
       return this.energy == 0;
     }
-
     isHurt() {
       let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
       timepassed = timepassed / 1000;
