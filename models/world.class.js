@@ -9,7 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
-    statusBarBottle = new StatusBarBottle();
+    // statusBarBottle = new StatusBarBottle();
     collectableCoins = level1.collectableCoins;
     collectableBottles = level1.collectableBottles;
     addedCoins = [];
@@ -57,6 +57,8 @@ class World {
         });
         this.level.collectableBottles.forEach((bottles, index) => {
           if( this.character.isColliding(bottles)) {
+            // this.character.addEnergy();
+            // this.statusBar.setPercentageBottle(this.character.energyBottle);
             this.addedBottles.push({ bottle: bottles, index: index });
             this.level.collectableBottles.splice(index, 1);
  /*            console.log(world.level.collectableBottles);
@@ -74,7 +76,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); //Back
         // ----- Space for fixed objects ----- //
         this.addToMap(this.statusBar);
-        this.addToMap(this.statusBarBottle);
+        // this.addToMap(this.statusBarBottle);
         this.ctx.translate(this.camera_x, 0); //Forwards
 
         this.addToMap(this.character);
