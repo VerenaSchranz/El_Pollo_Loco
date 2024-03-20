@@ -48,7 +48,7 @@ class MovableObject extends DrawableObject {
       }
     }
     addEnergyBottle() {
-      this.energyBottle += 5;
+      this.energyBottle += 20;
       if(this.energyBottle > 100) {
         this.energyBottle = 100;
       }
