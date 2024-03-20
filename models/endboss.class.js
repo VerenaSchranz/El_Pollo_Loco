@@ -3,12 +3,12 @@ class Endboss extends MovableObject {
     height = 400;
     width = 280;
     y = 60;
-    
+
     offset = {
-      top: 110,
-      bottom: 120,
-      left: 85,
-      right: 80
+      top: 150,
+      bottom: 210,
+      left: 45,
+      right: 0
     }
 
     IMAGES_WALKING =  [
@@ -24,7 +24,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 2500;
+        this.x = 500;
         this.animate();
     }
 
