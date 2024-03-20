@@ -50,10 +50,17 @@ class MovableObject extends DrawableObject {
     }
     addEnergyBottle() {
       this.energyBottle += 5;
-      if(this.energyBottle < 100) {
+      if(this.energyBottle > 100) {
         this.energyBottle = 100;
       }
     }
+    minusEnergyBottle() {
+      this.energyBottle -= 20;
+      if (this.energyBottle < 0) {
+          this.energyBottle = 0;
+          console.log("Nicht genug Energie");
+      }
+  }
 
     addEnergyCoin() {
       this.energyCoin += 5;

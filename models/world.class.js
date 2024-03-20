@@ -43,6 +43,9 @@ class World {
     if(this.keyboard.D){
       let bottle = new ThrowableObject(this.character.x + 100, this.character.y+ 100);
       this.throwableObjects.push(bottle);
+      this.character.minusEnergyBottle();
+      this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
+      console.log(world.statusBarBottle.percentageBottle);
     }
   }
     checkCollisions() { 
@@ -66,6 +69,7 @@ class World {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
             this.level.collectableBottles.splice(index, 1);
+            console.log(world.statusBarBottle.percentageBottle);
           }
         });
       }
@@ -73,7 +77,7 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
           if( this.character.hitEnemyTop(enemy, index) ) {
             enemy.enemyStatus = false;
-            console.log('jump läuft')
+            // console.log('jump läuft')
           }
         });
       }
