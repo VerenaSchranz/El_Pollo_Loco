@@ -11,6 +11,7 @@ class World {
     statusBar = new StatusBar();
     statusBarBottle = new StatusBarBottle();
     statusBarCoin = new StatusBarCoin();
+    statusBarEndboss = new StatusBarEndboss();
     collectableCoins = level1.collectableCoins;
     collectableBottles = level1.collectableBottles;
     addedCoins = [];
@@ -86,6 +87,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); //Back
         // ----- Space for fixed objects ----- //
         this.addToMap(this.statusBar);
+        this.addToMap(this.statusBarEndboss);
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarCoin);
         this.ctx.translate(this.camera_x, 0); //Forwards

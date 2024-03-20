@@ -14,7 +14,7 @@ class StatusBar extends DrawableObject {
   constructor() {
     super();
     this.loadImages(this.IMAGES);
-    this.x = 50;
+    this.x = 20;
     this.y = 0;
     this.width = 200;
     this.height = 60;
@@ -61,8 +61,8 @@ class StatusBarBottle extends DrawableObject {
   constructor() {
     super();
     this.loadImages(this.IMAGES);
-    this.x = 250;
-    this.y = 0;
+    this.x = 20;
+    this.y = 50;
     this.width = 200;
     this.height = 60;
     this.setPercentageBottle(0);
@@ -107,7 +107,7 @@ class StatusBarCoin extends DrawableObject {
   constructor() {
     super();
     this.loadImages(this.IMAGES);
-    this.x = 450;
+    this.x = 250;
     this.y = 0;
     this.width = 200;
     this.height = 60;
@@ -131,6 +131,52 @@ resolveImageIndexCoin() {
    } else if (this.percentageCoin > 60) {
      return 3;
    } else if (this.percentageCoin > 80) {
+     return 4;
+   } else {
+     return 5;
+   }
+ }
+}
+
+class StatusBarEndboss extends DrawableObject {
+  
+  IMAGES = [
+    'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
+    'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
+    'img/7_statusbars/2_statusbar_endboss/orange/orange40.png',
+    'img/7_statusbars/2_statusbar_endboss/orange/orange60.png',
+    'img/7_statusbars/2_statusbar_endboss/orange/orange80.png',
+    'img/7_statusbars/2_statusbar_endboss/orange/orange100.png',
+  ]
+  percentageCoin = 0;
+
+  constructor() {
+    super();
+    this.loadImages(this.IMAGES);
+    this.x = 480;
+    this.y = 0;
+    this.width = 200;
+    this.height = 60;
+    this.setPercentageEndboss(0);
+  }
+
+  //setPercentage(50);
+  setPercentageEndboss(percentageEndboss) {
+    this.percentageEndboss = percentageEndboss; // => 0...5
+    let path = this.IMAGES[this.resolveImageIndexEndboss()];
+    this.img = this.imageCache[path];
+  }
+
+resolveImageIndexEndboss() {
+  if(this.percentageEndboss == 0) {
+    return 0; 
+   } else if (this.percentageEndboss > 20) {
+     return 1;
+   } else if (this.percentageEndboss > 40) {
+     return 2;
+   } else if (this.percentageEndboss > 60) {
+     return 3;
+   } else if (this.percentageEndboss > 80) {
      return 4;
    } else {
      return 5;
