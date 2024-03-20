@@ -55,7 +55,7 @@ class MovableObject extends DrawableObject {
     }
 
     addEnergyCoin() {
-      this.energyCoin += 5;
+      this.energyCoin += 20;
       if(this.energyCoin < 100) {
         this.energyCoin = 100;
       }
