@@ -37,6 +37,7 @@ class World {
       this.checkCollisions();
       this.checkThrowObjects();
       this.checkCollisionJump();
+      this.checkEndbossGetHit()
     }, 200);
   }
   checkThrowObjects() {
@@ -73,14 +74,26 @@ class World {
           }
         });
       }
-      checkCollisionJump() { 
-        this.level.enemies.forEach((enemy, index) => {
-          if( this.character.hitEnemyTop(enemy, index) ) {
-            enemy.enemyStatus = false;
-            // console.log('jump läuft')
+    checkCollisionJump() { 
+      this.level.enemies.forEach((enemy, index) => {
+        if( this.character.hitEnemyTop(enemy, index) ) {
+          enemy.enemyStatus = false;
+          // console.log('jump läuft')
+        }
+      });
+    }
+    
+    checkEndbossGetHit(){
+      this.level.enemies.forEach((enemy) => {
+        this.ThrowableObject.forEach(element => {
+          if (element.isColliding(enemy)){
+            console.log('treffer')
+            this.level.enemies[3].hitEndboss();
+            this.statusBarEndboss.setPercentage(this.level.enemies[3].chickenLive);
           }
-        });
-      }
+        })
+      })
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
