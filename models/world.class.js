@@ -72,7 +72,9 @@ class World {
         this.level.enemies.forEach((enemy, index) => {
           if( this.character.hitEnemyTop(enemy, index) ) {
             enemy.enemyStatus = false;
-            console.log('jump läuft')
+            setTimeout(() => {
+              this.level.enemies.splice(index, 1);
+          }, 250);
           }
         });
       }

@@ -32,12 +32,11 @@ class MovableObject extends DrawableObject {
       this.y + this.height > mo.y &&
       this.x < mo.x &&
       this.y < mo.y + mo.height;
-
     }
 
     // character.isColliding(chicken Head);
     hitEnemyTop(mo) {
-      return  this.x + this.width > mo.x
+      return this.y + this.height - this.offset.bottom > mo.y + mo.offset-top && this.y + this.offset.top > mo.y + mo.height - mo.offset-bottom && this.character.speedY < 0;
     }
     
     hit() {
@@ -56,7 +55,7 @@ class MovableObject extends DrawableObject {
     }
 
     addEnergyCoin() {
-      this.energyCoin += 5;
+      this.energyCoin += 20;
       if(this.energyCoin < 100) {
         this.energyCoin = 100;
       }
@@ -66,7 +65,7 @@ class MovableObject extends DrawableObject {
       return this.energy == 0;
     }
     isHurt() {
-      let timepassed = new Date().getTime() - this.lastHit; //Difference in ms
+      let timepassed = new Date().getTime() - this.lastHit;
       timepassed = timepassed / 1000;
       return timepassed < 1;
     }
