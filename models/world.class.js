@@ -73,7 +73,7 @@ class World {
           if( this.character.hitEnemyTop(enemy, index) ) {
             enemy.enemyStatus = false;
             setTimeout(() => {
-              this.level.enemies.splice(index, 1); // Remove enemy from the array
+              this.level.enemies.splice(index, 1);
           }, 250);
           }
         });
