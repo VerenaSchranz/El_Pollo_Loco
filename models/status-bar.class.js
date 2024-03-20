@@ -78,13 +78,13 @@ class StatusBarBottle extends DrawableObject {
 resolveImageIndexBottle() {
    if(this.percentageBottle == 0) {
      return 0; 
-    } else if (this.percentageBottle > 20) {
+    } else if (this.percentageBottle < 20) {
       return 1;
-    } else if (this.percentageBottle > 40) {
+    } else if (this.percentageBottle < 40) {
       return 2;
-    } else if (this.percentageBottle > 60) {
+    } else if (this.percentageBottle < 60) {
       return 3;
-    } else if (this.percentageBottle > 80) {
+    } else if (this.percentageBottle < 80) {
       return 4;
     } else {
       return 5;
@@ -123,17 +123,19 @@ class StatusBarCoin extends DrawableObject {
 
 resolveImageIndexCoin() {
   if(this.percentageCoin == 100) {
-    return 5; 
-   } else if (this.percentageCoin > 20) {
-     return 1;
-   } else if (this.percentageCoin > 40) {
+    return 0; 
+   } else if (this.percentageCoin == 0) {
+     return 0; 
+   }else if (this.percentageCoin > 20) {
+      return 1;
+   } else if (this.percentageCoin < 40) {
      return 2;
-   } else if (this.percentageCoin > 60) {
+   } else if (this.percentageCoin < 60) {
      return 3;
-   } else if (this.percentageCoin > 80) {
+   } else if (this.percentageCoin < 80) {
      return 4;
    } else {
-     return 1;
+     return 5;
    }
  }
 }

@@ -37,7 +37,7 @@ class World {
       this.checkCollisions();
       this.checkThrowObjects();
       this.checkCollisionJump();
-      this.checkEndbossGetHit()
+      // this.checkEndbossGetHit()
     }, 200);
   }
   checkThrowObjects() {
@@ -62,6 +62,8 @@ class World {
             this.addedCoins.push({ coin: coins, index: index });
             this.level.collectableCoins.splice(index, 1);
             this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
+            console.log(world.statusBarCoin.percentageCoin);
+
           }
         });
         this.level.collectableBottles.forEach((bottles, index) => {
@@ -70,21 +72,24 @@ class World {
             this.addedBottles.push({ bottle: bottles, index: index });
             this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
             this.level.collectableBottles.splice(index, 1);
-            console.log(world.statusBarBottle.percentageBottle);
+            // console.log(world.statusBarBottle.percentageBottle);
           }
         });
       }
 
       checkCollisionJump() { 
         this.level.enemies.forEach((enemy, index) => {
-          if( this.character.hitEnemyTop(enemy, index) ) {
-            enemy.enemyStatus = false;
-            setTimeout(() => {
-              this.level.enemies.splice(index, 1);
-          }, 250);
-
+            if (this.character.hitEnemyTop(enemy, index)) {
+                enemy.enemyStatus = false;
+                setTimeout(() => {
+                    // Entferne den Feind aus dem Array
+                    this.level.enemies.splice(index, 1);
+                }, 250);
+            }
+        });
+    }
     
-    checkEndbossGetHit(){
+/*  checkEndbossGetHit(){
       this.level.enemies.forEach((enemy) => {
         this.ThrowableObject.forEach(element => {
           if (element.isColliding(enemy)){
@@ -95,8 +100,8 @@ class World {
           }
         })
       })
-    }
-
+ }
+ */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
