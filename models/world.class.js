@@ -89,19 +89,22 @@ class World {
         });
     }
     
-/*  checkEndbossGetHit(){
-      this.level.enemies.forEach((enemy) => {
-        this.ThrowableObject.forEach(element => {
-          if (element.isColliding(enemy)){
+  checkEndbossGetHit(){
+      this.level.enemies.forEach((enemy, enemyIndex) => {
+        this.ThrowableObject.forEach(bottle, bottleIndex => {
+          if (bottle.isColliding(enemy, enemyIndex)) {
             console.log('treffer')
-            this.level.enemies[3].hitEndboss();
-            this.statusBarEndboss.setPercentage(this.level.enemies[3].chickenLive);
-
+            enemy.enemyStatus = false;
+            // this.statusBarEndboss.setPercentage(this.level.enemies[3].energyEndboss);
           }
+          this.ThrowableObject.splice(bottleIndex.index, 1);
         })
       })
  }
- */
+
+
+
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
