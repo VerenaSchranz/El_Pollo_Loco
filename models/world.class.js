@@ -17,7 +17,7 @@ class World {
     addedCoins = [];
     addedBottles = [];
     throwableObjects = [];
-    lastJumpTime = false;
+    lastJumpTime;
     lastJump = false;
 
     constructor(canvas, keyboard) {
@@ -53,10 +53,10 @@ class World {
   }
     checkCollisions() { 
         this.level.enemies.forEach((enemy) => {
-          if( this.character.isColliding(enemy) ) {
+      /*     if( this.character.isColliding(enemy) ) {
             this.character.hit();
             this.statusBar.setPercentage(this.character.energy);
-          }
+          } */
         });
         this.level.collectableCoins.forEach((coins, index) => {
           if( this.character.isColliding(coins)) {
@@ -105,18 +105,17 @@ class World {
 
                 if (this.lastJumpTime == true) {
                   enemy.enemyStatus = false;
+                  this.lastJumpTime = true;
+                  this.lastJump = true;
                   setTimeout(() => {
                       this.level.enemies.splice(index, 1);
                   }, 250);
-
                 }
             }
-
             else {
                 this.character.hit(this.lastJump);
                 this.statusBar.setPercentage(this.character.energy);
             }
-
             setTimeout(() => {
                 this.lastJump = false;
             }, 700);
