@@ -17,6 +17,8 @@ class World {
     addedCoins = [];
     addedBottles = [];
     throwableObjects = [];
+    lastJumpTime = false;
+    lastJump = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,8 +44,7 @@ class World {
   }
   checkThrowObjects() {
     if(this.keyboard.D){
-      let bottle = new ThrowableObject(this.character.x + 0
-        , this.character.y+ 100, this.character.otherDirection);
+      let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
       this.throwableObjects.push(bottle);
       this.character.minusEnergyBottle();
       this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
@@ -78,7 +79,7 @@ class World {
         });
       }
 
-      checkCollisionJump() { 
+/*       checkCollisionJump() { 
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy, index)) {
                 enemy.enemyStatus = false;
@@ -88,6 +89,39 @@ class World {
                 }, 250);
             }
         });
+    } */
+
+    checkCollisionJump() {
+      if (this.character.speedY < 0) {
+        this.lastJumpTime = true;
+    }
+    if (this.character.speedY >= -20) {
+      this.lastJumpTime = false;
+  }
+    // console.log(this.lastJumpTime)
+        this.level.enemies.forEach((enemy, index) => {
+        if (this.character.isColliding(enemy)) {
+            if (this.character.isAboveGround()) {
+
+                if (this.lastJumpTime == true) {
+                  enemy.enemyStatus = false;
+                  setTimeout(() => {
+                      this.level.enemies.splice(index, 1);
+                  }, 250);
+
+                }
+            }
+
+            else {
+                this.character.hit(this.lastJump);
+                this.statusBar.setPercentage(this.character.energy);
+            }
+
+            setTimeout(() => {
+                this.lastJump = false;
+            }, 700);
+        }
+    });
     }
     
   checkEndbossGetHit(){
@@ -102,9 +136,6 @@ class World {
         })
       })
  }
-
-
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
