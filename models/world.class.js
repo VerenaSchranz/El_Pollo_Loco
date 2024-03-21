@@ -79,7 +79,7 @@ class World {
 
       checkCollisionJump() { 
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.hitEnemyTop(enemy, index)) {
+            if (this.character.isColliding(enemy, index)) {
                 enemy.enemyStatus = false;
                 setTimeout(() => {
                     // Entferne den Feind aus dem Array
