@@ -38,7 +38,6 @@ class World {
   run() {
     setInterval(() => {
       this.checkThrowObjects();
-      this.checkCollisionJump();
       // this.checkEndbossGetHit()
     }, 200);
     setInterval(() => {
