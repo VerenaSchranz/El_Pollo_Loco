@@ -95,50 +95,6 @@ class World {
     });
   }
 
-  /*       checkCollisionJump() { 
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy, index)) {
-                enemy.enemyStatus = false;
-                setTimeout(() => {
-                    // Entferne den Feind aus dem Array
-                    this.level.enemies.splice(index, 1);
-                }, 250);
-            }
-        });
-    } */
-
-  checkCollisionJump() {
-    /*  if (this.character.speedY < 0) {
-       this.lastJumpTime = true;
-     }
-     if (this.character.speedY >= -20) {
-       this.lastJumpTime = false;
-     }
-     // console.log(this.lastJumpTime)
-     this.level.enemies.forEach((enemy, index) => {
-       if (this.character.isColliding(enemy)) {
-         if (this.character.isAboveGround()) {
- 
-           if (this.lastJumpTime == true) {
-             enemy.enemyStatus = false;
-             this.lastJumpTime = true;
-             this.lastJump = true;
-             setTimeout(() => {
-               this.level.enemies.splice(index, 1);
-             }, 250);
-           }
-         }
-         else {
-           this.character.hit(this.lastJump);
-           this.statusBar.setPercentage(this.character.energy);
-         }
-         setTimeout(() => {
-           this.lastJump = false;
-         }, 700);
-       }
-     }); */
-  }
-
   checkEndbossGetHit() {
     this.level.enemies.forEach((enemy, enemyIndex) => {
       this.ThrowableObject.forEach(bottle, bottleIndex => {
