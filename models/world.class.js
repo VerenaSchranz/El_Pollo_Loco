@@ -2,6 +2,7 @@ class World {
   character = new Character();
   level = level1;
   enemies = level1.enemies;
+  endboss = level1.endboss;
   clouds = level1.clouds;
   backgroundObjects = level1.backgroundObjects;
   canvas;
@@ -97,7 +98,7 @@ class World {
 
   checkEndbossGetHit() {
     this.level.enemies.forEach((enemy, enemyIndex) => {
-      this.ThrowableObject.forEach(bottle, bottleIndex => {
+      throwableObject.forEach(bottle, bottleIndex => {
         if (bottle.isColliding(enemy, enemyIndex)) {
           console.log('treffer')
           enemy.enemyStatus = false;
@@ -125,6 +126,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.collectableCoins);
     this.addObjectsToMap(this.collectableBottles);
