@@ -2,7 +2,7 @@ class Chicken extends MovableObject {
   y = 360;
   height = 60;
   width = 60;
-  enemyStatus = true;
+  isDead = false;
   offset = {
     top: 60 ,
     bottom: 100,
@@ -36,10 +36,10 @@ class Chicken extends MovableObject {
     
     // Animation basierend auf dem Status des Gegners
     setInterval(() => {
-      if (this.enemyStatus === true) {
+      if (this.isDead === false) {
         this.playAnimation(this.IMAGES_WALKING);
       }
-      if (this.enemyStatus === false) {
+      if (this.isDead === true) {
         this.playAnimation(this.IMAGES_DEAD);
       }
     }, 200);
