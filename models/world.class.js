@@ -56,15 +56,18 @@ class World {
   checkCollisions() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
-        // chicken is killed
+
         if (this.character.isAboveGround() && this.character.speedY <= 0) {
           if (!enemy.isDead) {
             enemy.isDead = true;
+            this.character.immune = true;
+            console.log(this.character.immune);
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
             }, 250);
           }
-        } else {
+        } 
+        else {
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
         }
