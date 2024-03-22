@@ -8,7 +8,7 @@ class MovableObject extends DrawableObject {
   energyCoin = 0;
   lastHit = 0;
   enemyStatus = true;
-
+  immune = false
   applyGravity() {
       setInterval(()  => {
           if(this.isAboveGround() || this.speedY > 0 ){
@@ -34,19 +34,20 @@ class MovableObject extends DrawableObject {
     this.y < mo.y + mo.height;
   }
 
-  // character.isColliding(chicken Head);
-  hitEnemyTop(mo) {
-    return this.y + this.height - this.offset.bottom > mo.y + mo.offset-top && this.y + this.offset.top > mo.y + mo.height - mo.offset-bottom && this.character.speedY < 0;
-  }
-  
-  hit() {
-    this.energy -= 5;
-    if(this.energy < 0) {
-      this.energy = 0;
-    } else {
-      this.lastHit = new Date().getTime();
+  hit(){
+    if (!this.immune) {
+        this.immune = true;
+        this.energy -= 20;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        setTimeout(() => {
+            this.immune = false;
+        }, 1000);
     }
-  }
+}
   addEnergyBottle() {
     this.energyBottle += 20;
     if(this.energyBottle > 100) {
@@ -72,8 +73,8 @@ class MovableObject extends DrawableObject {
     return this.energy == 0;
   }
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit;
-    timepassed = timepassed / 1000;
+    let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
+    timepassed = timepassed / 1000; // Difference in s
     return timepassed < 1;
   }
 
