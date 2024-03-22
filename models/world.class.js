@@ -2,6 +2,7 @@ class World {
   character = new Character();
   level = level1;
   enemies = level1.enemies;
+  endboss = level1.endboss;
   clouds = level1.clouds;
   backgroundObjects = level1.backgroundObjects;
   canvas;
@@ -37,8 +38,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkThrowObjects();
-      this.checkCollisionJump();
-      // this.checkEndbossGetHit()
+      this.checkEndbossGetHit()
     }, 200);
     setInterval(() => {
       this.checkCollisions();
@@ -66,14 +66,21 @@ class World {
               this.level.enemies.splice(index, 1);
             }, 250);
           }
-        } 
+        }
         else {
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
         }
       }
     });
-    
+
+    this.level.enemies.forEach((endboss) => {
+      if (this.character.isColliding(endboss)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+      }
+    });
+
     this.level.collectableCoins.forEach((coins, index) => {
       if (this.character.isColliding(coins)) {
         this.character.addEnergyCoin();
@@ -95,62 +102,31 @@ class World {
     });
   }
 
-  /*       checkCollisionJump() { 
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy, index)) {
-                enemy.enemyStatus = false;
-                setTimeout(() => {
-                    // Entferne den Feind aus dem Array
-                    this.level.enemies.splice(index, 1);
-                }, 250);
-            }
-        });
-    } */
-
-  checkCollisionJump() {
-    /*  if (this.character.speedY < 0) {
-       this.lastJumpTime = true;
-     }
-     if (this.character.speedY >= -20) {
-       this.lastJumpTime = false;
-     }
-     // console.log(this.lastJumpTime)
-     this.level.enemies.forEach((enemy, index) => {
-       if (this.character.isColliding(enemy)) {
-         if (this.character.isAboveGround()) {
- 
-           if (this.lastJumpTime == true) {
-             enemy.enemyStatus = false;
-             this.lastJumpTime = true;
-             this.lastJump = true;
-             setTimeout(() => {
-               this.level.enemies.splice(index, 1);
-             }, 250);
-           }
-         }
-         else {
-           this.character.hit(this.lastJump);
-           this.statusBar.setPercentage(this.character.energy);
-         }
-         setTimeout(() => {
-           this.lastJump = false;
-         }, 700);
-       }
-     }); */
-  }
-
   checkEndbossGetHit() {
-    this.level.enemies.forEach((enemy, enemyIndex) => {
-      this.ThrowableObject.forEach(bottle, bottleIndex => {
-        if (bottle.isColliding(enemy, enemyIndex)) {
-          console.log('treffer')
-          enemy.enemyStatus = false;
-          // this.statusBarEndboss.setPercentage(this.level.enemies[3].energyEndboss);
+    this.throwableObjects.forEach((throwableObject, index) => {
+      this.level.enemies.forEach((enemy, index) => {
+        if (throwableObject.isColliding(enemy)) {
+          this.isDead = true;
+          // breakAndSplash();
+
+          this.throwableObjects.splice(index, 1);
         }
-        this.ThrowableObject.splice(bottleIndex.index, 1);
-      })
-    })
+      });
+
+      if (this.level.endboss) {
+        this.level.endboss.forEach((endboss, index) => {
+          if (throwableObject.isColliding(endboss)) {
+            endboss.hitBottleEndboss();
+            endboss.minusEnergyEndboss();
+            this.statusBarEndboss.setPercentageEndboss(this.endboss.energyEndboss);
+
+            this.throwableObjects.splice(index, 1);
+          }
+        });
+      }
+    });
   }
+
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -169,6 +145,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.collectableCoins);
     this.addObjectsToMap(this.collectableBottles);
