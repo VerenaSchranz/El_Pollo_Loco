@@ -6,8 +6,8 @@ class MovableObject extends DrawableObject {
   energy = 100;
   energyBottle = 0;
   energyCoin = 0;
+  energyEndboss = 0;
   lastHit = 0;
-  enemyStatus = true;
   immune = false;
   offset = {
     top: 0,
@@ -54,25 +54,20 @@ class MovableObject extends DrawableObject {
         }, 1000);
     }
 }
+
   addEnergyBottle() {
     this.energyBottle += 20;
     if(this.energyBottle > 100) {
       this.energyBottle = 100;
     }
   }
+
   minusEnergyBottle() {
     this.energyBottle -= 20;
     if (this.energyBottle < 0) {
         this.energyBottle = 0;
-        console.log("Nicht genug Energie");
+        // console.log("Nicht genug Energie");
     }
-}
-
-minusEnergyEndboss() {
-  this.energyEndboss -= 20;
-  if (this.energyEndboss < 0) {
-      this.energyEndboss = 0;
-  }
 }
 
   addEnergyCoin() {

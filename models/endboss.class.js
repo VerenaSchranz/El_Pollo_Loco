@@ -3,6 +3,7 @@ class Endboss extends MovableObject {
   isDead = false;
   inDamage = false;
   aggressive = false;
+  endbossImmune = false;
   height = 400;
   width = 280;
   y = 60;
@@ -70,9 +71,31 @@ class Endboss extends MovableObject {
       this.inDamage = false;
     }, 400);
   }
-  
-  
+
+  minusEnergyEndboss(){
+    if (!this.endbossImmune) {
+        this.endbossImmune = true;
+        this.energyEndboss -= 20;
+        if (this.energyEndboss < 0) {
+            this.energyEndboss = 0;
+            this.isDeadEndboss();
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+        setTimeout(() => {
+            this.immune = false;
+        }, 1000);
+    }
+
+}
+
+
+  isDeadEndboss() {
+    this.isDead = true;
+    
+  }
   animate() {
+
     setInterval(() => {
       this.moveLeft();
     }, 1000 / 60);

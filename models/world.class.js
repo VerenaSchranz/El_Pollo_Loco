@@ -74,7 +74,7 @@ class World {
       }
     });
 
-    this.level.enemies.forEach((endboss) => {
+    this.level.endboss.forEach((endboss) => {
       if (this.character.isColliding(endboss)) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
@@ -107,7 +107,7 @@ class World {
       this.level.enemies.forEach((enemy, index) => {
         if (throwableObject.isColliding(enemy)) {
           this.isDead = true;
-          // breakAndSplash();
+          breakAndSplash();
 
           this.throwableObjects.splice(index, 1);
         }
@@ -116,12 +116,20 @@ class World {
       if (this.level.endboss) {
         this.level.endboss.forEach((endboss, index) => {
           if (throwableObject.isColliding(endboss)) {
+            console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
+
             endboss.hitBottleEndboss();
             endboss.minusEnergyEndboss();
-            this.statusBarEndboss.setPercentageEndboss(this.endboss.energyEndboss);
-
+            this.statusBarEndboss.setPercentageEndboss(this.character.energyEndboss);
             this.throwableObjects.splice(index, 1);
+            console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
+
+
           }
+          setTimeout(() => {
+            
+            this.endboss.splice(index, 1);
+          }, 1500);
         });
       }
     });
