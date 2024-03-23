@@ -18,8 +18,7 @@ class World {
   addedCoins = [];
   addedBottles = [];
   throwableObjects = [];
-  lastJumpTime;
-  lastJump = false;
+  bottleSplash = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -108,7 +107,7 @@ class World {
         if (throwableObject.isColliding(enemy)) {
           this.isDead = true;
           breakAndSplash();
-
+          // this.endboss.breakAndSplash();
           this.throwableObjects.splice(index, 1);
         }
       });

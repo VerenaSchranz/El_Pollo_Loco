@@ -1,4 +1,6 @@
 class ThrowableObject extends MovableObject {
+  throwBottleAir = false;
+  bottleSplash = false;
   offset = { 
     top: 40 ,
     bottom: 60,
@@ -17,6 +19,7 @@ class ThrowableObject extends MovableObject {
     this.width = 110;
     this.otherDirection = direction;
     this.throw();
+    this.animate();
   }
 
   IMAGES_ROTATE = [
@@ -41,9 +44,9 @@ IMAGES_BOTTLE_SPLASH = [
 ];
 
   throw() {
-
-
+    this.throwBottleAir = true;
     this.speedY = 30;
+    console.log(this.speedY)
     this.applyGravity();
     if (this.otherDirection == true) { 
       setInterval(() => {
@@ -54,5 +57,27 @@ IMAGES_BOTTLE_SPLASH = [
         this.x += 10;
       }, 25);
     }
-  }  
+  }
+
+  breakAndSplash() {
+    this.bottleSplash = true;
+    console.log('bottlesplash!')
+    setTimeout(() => {
+      this.bottleSplash = false;
+    }, 400);
+  }
+
+  animate() {
+
+    setInterval(() => {
+
+      if (this.throwBottleAir) {
+        this.playAnimation(this.IMAGES_ROTATE);
+
+      } else if (this.bottleSplash) {
+        this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+      }
+    }, 9000 / 60);
+  }
+
 }
