@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
   inDamage = false;
   aggressive = false;
   endbossImmune = false;
+  energyEndboss = 100;
   height = 400;
   width = 280;
   y = 60;
@@ -83,7 +84,7 @@ class Endboss extends MovableObject {
             this.lastHit = new Date().getTime();
         }
         setTimeout(() => {
-            this.immune = false;
+            this.endbossImmune = false;
         }, 1000);
     }
 
@@ -91,8 +92,10 @@ class Endboss extends MovableObject {
 
 
   isDeadEndboss() {
-    this.isDead = true;
-    
+    if (this.energyEndboss <= 0) {
+      this.isDead = true;
+      // Weitere Logik zur Entfernung des Endbosses oder Endspielbedingungen hier einfügen
+  }
   }
   animate() {
 

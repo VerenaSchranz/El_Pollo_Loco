@@ -1,6 +1,7 @@
 class ThrowableObject extends MovableObject {
   throwBottleAir = false;
   bottleSplash = false;
+  isBreaking = false;
   offset = { 
     top: 40 ,
     bottom: 60,
@@ -60,11 +61,11 @@ IMAGES_BOTTLE_SPLASH = [
   }
 
   breakAndSplash() {
-    this.bottleSplash = true;
-    console.log('bottlesplash!')
-    setTimeout(() => {
-      this.bottleSplash = false;
-    }, 400);
+    this.isBreaking = true;
+    this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
+    this.speedY = 0;
+    this.speedX = 0;
+    this.deletable = true;
   }
 
   animate() {
