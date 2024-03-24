@@ -106,7 +106,7 @@ class World {
   checkEndbossGetHit() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
         this.level.enemies.forEach((enemy, enemyIndex) => {
-            if (throwableObject.isColliding(enemy)) {
+            if (throwableObject.isColliding(enemy, enemyIndex)) {
                 this.isDead = true;
                 // breakAndSplash();
                 // this.endboss.breakAndSplash();
@@ -117,16 +117,14 @@ class World {
         if (this.level.endboss) {
             this.level.endboss.forEach((endboss, endbossIndex) => {
                 if (throwableObject.isColliding(endboss)) {
-                    console.log('Endboss: Leben vor Treffer', endboss.energyEndboss);
-
                     endboss.hitBottleEndboss();
                     endboss.minusEnergyEndboss();
                     this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
-                    this.throwableObjects.splice(throwableIndex, 1);
+                    throwableObject.breakAndSplash();
+                    setTimeout(() => {
+                      this.throwableObjects.splice(throwableIndex, 1);
+                    }, 300);
                     
-                    console.log('Endboss: Leben nach Treffer', endboss.energyEndboss);
-
-                    // Überprüfen, ob der Endboss tot ist und ihn dann entfernen
                     if (endboss.isDead) {
                         setTimeout(() => {
                             this.level.endboss.splice(endbossIndex, 1);
