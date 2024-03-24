@@ -118,6 +118,7 @@ IMAGES_SLEEPING = [
         this.playAnimation(this.IMAGES_DEAD);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
+        this.setNewTimePassed();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
         this.setNewTimePassed();
