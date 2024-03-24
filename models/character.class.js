@@ -118,19 +118,23 @@ IMAGES_SLEEPING = [
         this.playAnimation(this.IMAGES_DEAD);
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
-        this.setNewTimePassed();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
         this.setNewTimePassed();
-      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-        const timePassed = this.timePassedSinceLastAction();
-        if (timePassed >= 4) {
-          this.playAnimation(this.IMAGES_SLEEPING);
-        } else {
-          this.playAnimation(this.IMAGES_IDLE);
-        }
-      } else {
+      } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
         this.playAnimation(this.IMAGES_WALKING);
+        this.setNewTimePassed();
+      } else if (
+        (!this.world.keyboard.LEFT && this.timePassedSinceLastAction() >= 5) ||
+        (!this.world.keyboard.RIGHT && this.timePassedSinceLastAction() >= 5) 
+      ) {
+        this.playAnimation(this.IMAGES_SLEEPING);
+      } else if (
+        !this.world.keyboard.LEFT ||
+        (!this.world.keyboard.RIGHT &&
+          this.timePassed() >= this.timePassed + 5000)
+      ) {
+        this.playAnimation(this.IMAGES_IDLE);
       }
     }, 100);
   }
