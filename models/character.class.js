@@ -2,6 +2,7 @@ class Character extends MovableObject {
   height = 280;
   y = 80;
   speed = 10;
+  timePassed = 0;
   offset = {
     top: 110,
     bottom: 120,
@@ -96,44 +97,50 @@ IMAGES_SLEEPING = [
 
   animate() {
     setInterval(() => {
-      // console.log(this.speedY)
-      this.walking_sound.pause();
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
         this.walking_sound.play();
       }
- 
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
         this.otherDirection = true;
         this.walking_sound.play();
       }
-
-      if(this.world.keyboard.SPACE && !this.isAboveGround()) {
+      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
         this.jump();
       }
-
       this.world.camera_x = -this.x + 100;
     }, 1000 / 60);
-
+  
     setInterval(() => {
-
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
-      } else if(this.isHurt()) {
+      } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
-      } else {
-        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-          this.playAnimation(this.IMAGES_WALKING);
+        this.setNewTimePassed();
+      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+        const timePassed = this.timePassedSinceLastAction();
+        if (timePassed >= 4) {
+          this.playAnimation(this.IMAGES_SLEEPING);
+        } else {
+          this.playAnimation(this.IMAGES_IDLE);
         }
+      } else {
+        this.playAnimation(this.IMAGES_WALKING);
       }
-    }, 50);
+    }, 100);
   }
-  jump() {
-    this.speedY = 30;
+  setNewTimePassed() {
+    this.timePassed = new Date().getTime();
   }
-}
+  timePassedSinceLastAction() {
+    let timePassed = new Date().getTime() - this.timePassed;
+    timePassed = timePassed / 1000;
+    return timePassed;
+  }
+
+}  
 

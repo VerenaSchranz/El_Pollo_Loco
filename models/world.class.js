@@ -41,6 +41,7 @@ class World {
     }, 200);
     setInterval(() => {
       this.checkCollisions();
+      this.checkCollisionsWithGround();
     }, 25);
   }
   checkThrowObjects() {
@@ -57,6 +58,7 @@ class World {
       if (this.character.isColliding(enemy)) {
 
         if (this.character.isAboveGround() && this.character.speedY <= 0) {
+          this.character.jump();
           if (!enemy.isDead) {
             enemy.isDead = true;
             this.character.immune = true;
@@ -106,7 +108,7 @@ class World {
       this.level.enemies.forEach((enemy, index) => {
         if (throwableObject.isColliding(enemy)) {
           this.isDead = true;
-          breakAndSplash();
+          // breakAndSplash();
           // this.endboss.breakAndSplash();
           this.throwableObjects.splice(index, 1);
         }
@@ -117,23 +119,34 @@ class World {
           if (throwableObject.isColliding(endboss)) {
             console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
 
-            endboss.hitBottleEndboss();
-            endboss.minusEnergyEndboss();
-            this.statusBarEndboss.setPercentageEndboss(this.character.energyEndboss);
+            this.level.endboss.hitBottleEndboss();
+            this.level.endboss.minusEnergyEndboss();
+            this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
             this.throwableObjects.splice(index, 1);
             console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
 
 
           }
-          setTimeout(() => {
-            
-            this.endboss.splice(index, 1);
-          }, 1500);
+          /*           setTimeout(() => {
+                      
+                      this.endboss.splice(index, 1);
+                    }, 1500); */
         });
       }
     });
   }
 
+  checkCollisionsWithGround() {
+    this.throwableObjects.forEach((throwableObject, index) => {
+
+      if (throwableObject.speedY < -38) {
+        throwableObject.breakAndSplash();
+        setTimeout(() => {
+          this.throwableObjects.splice(index, 1);
+        }, 100);
+      }
+    });
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

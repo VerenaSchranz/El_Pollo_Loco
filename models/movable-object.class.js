@@ -7,7 +7,7 @@ class MovableObject extends DrawableObject {
   energy = 100;
   energyBottle = 0;
   energyCoin = 0;
-  energyEndboss = 0;
+  energyEndboss = 100;
   lastHit = 0;
   immune = false;
   offset = {
@@ -16,6 +16,8 @@ class MovableObject extends DrawableObject {
     left: 0,
     right: 0,
   }
+
+  
   applyGravity() {
       setInterval(()  => {
           if(this.isAboveGround() || this.speedY > 0 ){
