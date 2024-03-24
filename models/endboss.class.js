@@ -80,6 +80,7 @@ class Endboss extends MovableObject {
         if (this.energyEndboss < 0) {
             this.energyEndboss = 0;
             this.isDeadEndboss();
+
         } else {
             this.lastHit = new Date().getTime();
         }
@@ -91,12 +92,12 @@ class Endboss extends MovableObject {
 }
 
 
-  isDeadEndboss() {
-    if (this.energyEndboss <= 0) {
+isDeadEndboss() {
+  if (this.energyEndboss <= 0) {
       this.isDead = true;
-      // Weitere Logik zur Entfernung des Endbosses oder Endspielbedingungen hier einfügen
+    }
   }
-  }
+  
   animate() {
 
     setInterval(() => {
