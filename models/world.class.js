@@ -58,7 +58,7 @@ class World {
       if (this.character.isColliding(enemy)) {
 
         if (this.character.isAboveGround() && this.character.speedY <= 0) {
-          this.character.jump();
+          this.character.jumpOnEnemy();
           if (!enemy.isDead) {
             enemy.isDead = true;
             this.character.immune = true;
@@ -104,37 +104,40 @@ class World {
   }
 
   checkEndbossGetHit() {
-    this.throwableObjects.forEach((throwableObject, index) => {
-      this.level.enemies.forEach((enemy, index) => {
-        if (throwableObject.isColliding(enemy)) {
-          this.isDead = true;
-          // breakAndSplash();
-          // this.endboss.breakAndSplash();
-          this.throwableObjects.splice(index, 1);
-        }
-      });
-
-      if (this.level.endboss) {
-        this.level.endboss.forEach((endboss, index) => {
-          if (throwableObject.isColliding(endboss)) {
-            console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
-
-            this.level.endboss.hitBottleEndboss();
-            this.level.endboss.minusEnergyEndboss();
-            this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
-            this.throwableObjects.splice(index, 1);
-            console.log('ENdboss: leben', world.statusBarEndboss.percentageEndboss)
-
-
-          }
-          /*           setTimeout(() => {
-                      
-                      this.endboss.splice(index, 1);
-                    }, 1500); */
+    this.throwableObjects.forEach((throwableObject, throwableIndex) => {
+        this.level.enemies.forEach((enemy, enemyIndex) => {
+            if (throwableObject.isColliding(enemy)) {
+                this.isDead = true;
+                // breakAndSplash();
+                // this.endboss.breakAndSplash();
+                this.throwableObjects.splice(throwableIndex, 1);
+            }
         });
-      }
+
+        if (this.level.endboss) {
+            this.level.endboss.forEach((endboss, endbossIndex) => {
+                if (throwableObject.isColliding(endboss)) {
+                    console.log('Endboss: Leben vor Treffer', endboss.energyEndboss);
+
+                    endboss.hitBottleEndboss();
+                    endboss.minusEnergyEndboss();
+                    this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
+                    this.throwableObjects.splice(throwableIndex, 1);
+                    
+                    console.log('Endboss: Leben nach Treffer', endboss.energyEndboss);
+
+                    // Überprüfen, ob der Endboss tot ist und ihn dann entfernen
+                    if (endboss.isDead) {
+                        setTimeout(() => {
+                            this.level.endboss.splice(endbossIndex, 1);
+                        }, 500);
+                    }
+                }
+            });
+        }
     });
-  }
+}
+
 
   checkCollisionsWithGround() {
     this.throwableObjects.forEach((throwableObject, index) => {
