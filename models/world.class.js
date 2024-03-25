@@ -2,6 +2,7 @@ class World {
   character = new Character();
   level = level1;
   enemies = level1.enemies;
+  enemies = level1.smallEnemies;
   endboss = level1.endboss;
   clouds = level1.clouds;
   backgroundObjects = level1.backgroundObjects;
@@ -195,7 +196,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.endboss);
+     this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.collectableCoins);
     this.addObjectsToMap(this.collectableBottles);
