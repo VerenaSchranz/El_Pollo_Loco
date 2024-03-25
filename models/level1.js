@@ -3,6 +3,9 @@ const level1 = new Level(
     new Chicken(),
     new Chicken(),
     new Chicken(),
+    new Chicken(),
+    new Chicken(),
+    new Smallchicken(),
     new Smallchicken(),
     new Smallchicken(),
     new Smallchicken(),
@@ -52,8 +55,21 @@ const level1 = new Level(
       719 * 3
     ),
   ],
-  [new CollectableCoin(),
+  [
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
   ],
-  [new CollectableBottle(),
+  [
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
   ]
 );

@@ -47,12 +47,14 @@ class World {
     }, 25);
   }
   checkThrowObjects() {
-    if (this.keyboard.D) {
-      let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
-      this.throwableObjects.push(bottle);
-      this.character.minusEnergyBottle();
-      this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-      console.log(world.statusBarBottle.percentageBottle);
+    if (this.character.energyBottle > 0) {
+      if (this.keyboard.D) {
+        let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
+        this.throwableObjects.push(bottle);
+        this.character.minusEnergyBottle();
+        this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
+      }
+
     }
   }
   checkCollisions() {
@@ -94,51 +96,40 @@ class World {
 
       }
     });
-    this.level.collectableBottles.forEach((bottles, index) => {
-      if (this.character.isColliding(bottles)) {
-        this.character.addEnergyBottle();
-        this.addedBottles.push({ bottle: bottles, index: index });
-        this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-        this.level.collectableBottles.splice(index, 1);
-        // console.log(world.statusBarBottle.percentageBottle);
+    this.level.collectableBottles.forEach((bottle, index) => {
+      if (this.character.isColliding(bottle)) {
+        if (this.character.energyBottle < 100) {
+          this.character.addEnergyBottle();
+          this.addedBottles.push({ bottle: bottle, index: index });
+          this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
+          this.level.collectableBottles.splice(index, 1);
+        
+        }
       }
     });
+
   }
 
   checkEndbossGetHit() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
-        this.level.enemies.forEach((enemy, enemyIndex) => {
-            if (throwableObject.isColliding(enemy)) {
-                this.isDead = true;
-                // breakAndSplash();
-                // this.endboss.breakAndSplash();
-                this.throwableObjects.splice(throwableIndex, 1);
+
+      if (this.level.endboss) {
+        this.level.endboss.forEach((endboss, endbossIndex) => {
+          if (throwableObject.isColliding(endboss)) {
+            endboss.hitBottleEndboss();
+            endboss.minusEnergyEndboss();
+            this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
+            this.throwableObjects.splice(throwableIndex, 1);
+            if (endboss.isDead) {
+              setTimeout(() => {
+                this.level.endboss.splice(endbossIndex, 1);
+              }, 500);
             }
+          }
         });
-
-        if (this.level.endboss) {
-            this.level.endboss.forEach((endboss, endbossIndex) => {
-                if (throwableObject.isColliding(endboss)) {
-                    console.log('Endboss: Leben vor Treffer', endboss.energyEndboss);
-
-                    endboss.hitBottleEndboss();
-                    endboss.minusEnergyEndboss();
-                    this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
-                    this.throwableObjects.splice(throwableIndex, 1);
-                    
-                    console.log('Endboss: Leben nach Treffer', endboss.energyEndboss);
-
-                    // Überprüfen, ob der Endboss tot ist und ihn dann entfernen
-                    if (endboss.isDead) {
-                        setTimeout(() => {
-                            this.level.endboss.splice(endbossIndex, 1);
-                        }, 500);
-                    }
-                }
-            });
-        }
+      }
     });
-}
+  }
 
 
   checkCollisionsWithGround() {
@@ -155,29 +146,29 @@ class World {
 
   checkCollisionThrowableWithChicken() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
-        this.level.enemies.forEach((enemy, enemyIndex) => {
-            if (throwableObject.isColliding(enemy)) {
-                console.log('Throwable collides with enemy');
+      this.level.enemies.forEach((enemy, enemyIndex) => {
+        if (throwableObject.isColliding(enemy)) {
+          console.log('Throwable collides with enemy');
 
-                if (!enemy.isDead) {
-                    enemy.isDead = true;
-                    this.character.immune = true;
-                    console.log(this.character.immune);
-                    setTimeout(() => {
-                      
-                      this.level.enemies.splice(enemyIndex, 1);
-                    }, 250);
-                  }
-                  
-                  throwableObject.breakAndSplash();
-                  setTimeout(() => {
-                    this.throwableObjects.splice(throwableIndex, 1);
-                  }, 100);
-                
-            }
-        });
+          if (!enemy.isDead) {
+            enemy.isDead = true;
+            this.character.immune = true;
+            console.log(this.character.immune);
+            setTimeout(() => {
+
+              this.level.enemies.splice(enemyIndex, 1);
+            }, 250);
+          }
+
+          throwableObject.breakAndSplash();
+          setTimeout(() => {
+            this.throwableObjects.splice(throwableIndex, 1);
+          }, 100);
+
+        }
+      });
     });
-}
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -196,7 +187,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
     this.addObjectsToMap(this.level.enemies);
-     this.addObjectsToMap(this.level.endboss);
+    this.addObjectsToMap(this.level.endboss);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.collectableCoins);
     this.addObjectsToMap(this.collectableBottles);

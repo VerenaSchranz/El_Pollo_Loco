@@ -27,7 +27,12 @@ class Smallchicken extends MovableObject {
       this.x = 200 + Math.random() * 500;
       this.speed = 0.15 + Math.random() * 0.25;
       this.animate();
-  }
+      this.randomizePosition();
+    }
+    
+    randomizePosition() {
+      this.x = 200 + Math.random() * 1800;
+    }
   
   animate() {
     // Animation für das Bewegen nach links

@@ -108,8 +108,34 @@ class MovableObject extends DrawableObject {
   jump() {
     this.speedY = 30;
   }
+
   jumpOnEnemy() {
-    this.speedY = 15;
+    // Prüfen, ob der Charakter noch nicht auf einen Gegner gesprungen ist und die y-Position über 150 liegt
+    if (!this.hasJumpedOnEnemy && this.y >= 150) {
+      this.hasJumpedOnEnemy = true; // Den Status setzen, dass der Charakter gesprungen ist
+      this.speedY = -20; // Negative Geschwindigkeit für den Sprung nach oben
+    }
   }
+  
+  // In Ihrer Animationsschleife oder Bewegungsmethode
+  animate() {
+    // Annahme: Diese Funktion wird in einer Animationsschleife aufgerufen
+    // Hier wird die y-Position basierend auf der Geschwindigkeit aktualisiert
+    this.y += this.speedY; // Verwenden Sie += für die Bewegung nach oben (-20) oder unten (z. B. 10 für die Gravitation)
+  
+    // Fügen Sie hier Ihre Kollisions- und Bewegungslogik hinzu
+  
+    // Überprüfen, ob der Charakter den Boden erreicht hat (z. B. y-Position ist größer als oder gleich 150)
+    if (this.y >= 150) {
+      this.hasJumpedOnEnemy = false; // Zurücksetzen für den nächsten Sprung
+      this.y = 150; // Oder verwenden Sie this.y = Math.max(this.y, 149);
+      this.speedY = 0; // Zurücksetzen der Geschwindigkeit nach dem Sprung
+    }
+  }
+   
+  
 }
+
+
+
 
