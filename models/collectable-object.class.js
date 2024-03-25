@@ -1,8 +1,6 @@
 class CollectableCoin extends MovableObject {
   height = 150;
   width = 150;
-  x = 500;
-  y = 250;
   IMAGES_COINS = [
     'img/8_coin/coin_1.png',
     'img/8_coin/coin_2.png'
@@ -20,8 +18,14 @@ class CollectableCoin extends MovableObject {
     super().loadImage(this.IMAGES_COINS[0]);
     this.loadImages(this.IMAGES_COINS);
     this.animate();
+    this.randomizePosition();
   }
   
+  randomizePosition() {
+    this.x = 500 + Math.random() * 1800;
+    this.y = 125 + Math.random() * 200;
+  }
+
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_COINS);
@@ -50,8 +54,12 @@ class CollectableBottle extends MovableObject {
     super().loadImage(this.IMAGES_BOTTLES[0]);
     this.loadImages(this.IMAGES_BOTTLES);
     this.animate();
+    this.randomizePosition();
   }
   
+  randomizePosition() {
+    this.x = 500 + Math.random() * 1800;
+  }
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_BOTTLES);

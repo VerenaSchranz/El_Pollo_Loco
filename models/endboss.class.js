@@ -86,7 +86,7 @@ class Endboss extends MovableObject {
         }
         setTimeout(() => {
             this.endbossImmune = false;
-        }, 1000);
+        }, 400);
     }
 
 }

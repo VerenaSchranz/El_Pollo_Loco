@@ -52,8 +52,21 @@ const level1 = new Level(
       719 * 3
     ),
   ],
-  [new CollectableCoin(),
+  [
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
+    new CollectableCoin(),
   ],
-  [new CollectableBottle(),
+  [
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
+    new CollectableBottle(),
   ]
 );
