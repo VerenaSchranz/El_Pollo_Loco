@@ -42,6 +42,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkCollisionsWithGround();
+      this.checkCollisionThrowableWithChicken();
     }, 25);
   }
   checkThrowObjects() {
@@ -150,6 +151,32 @@ class World {
       }
     });
   }
+
+  checkCollisionThrowableWithChicken() {
+    this.throwableObjects.forEach((throwableObject, throwableIndex) => {
+        this.level.enemies.forEach((enemy, enemyIndex) => {
+            if (throwableObject.isColliding(enemy)) {
+                console.log('Throwable collides with enemy');
+
+                if (!enemy.isDead) {
+                    enemy.isDead = true;
+                    this.character.immune = true;
+                    console.log(this.character.immune);
+                    setTimeout(() => {
+                      
+                      this.level.enemies.splice(enemyIndex, 1);
+                    }, 250);
+                  }
+                  
+                  throwableObject.breakAndSplash();
+                  setTimeout(() => {
+                    this.throwableObjects.splice(throwableIndex, 1);
+                  }, 100);
+                
+            }
+        });
+    });
+}
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
