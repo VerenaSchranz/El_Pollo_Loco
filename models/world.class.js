@@ -47,12 +47,14 @@ class World {
     }, 25);
   }
   checkThrowObjects() {
-    if (this.keyboard.D) {
-      let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
-      this.throwableObjects.push(bottle);
-      this.character.minusEnergyBottle();
-      this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-      console.log(world.statusBarBottle.percentageBottle);
+    if (this.character.energyBottle > 0) {
+      if (this.keyboard.D) {
+        let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
+        this.throwableObjects.push(bottle);
+        this.character.minusEnergyBottle();
+        this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
+      }
+
     }
   }
   checkCollisions() {
@@ -101,36 +103,23 @@ class World {
           this.addedBottles.push({ bottle: bottle, index: index });
           this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
           this.level.collectableBottles.splice(index, 1);
+        
         }
       }
     });
-    
+
   }
 
   checkEndbossGetHit() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
-      this.level.enemies.forEach((enemy, enemyIndex) => {
-        if (throwableObject.isColliding(enemy)) {
-          this.isDead = true;
-          // breakAndSplash();
-          // this.endboss.breakAndSplash();
-          this.throwableObjects.splice(throwableIndex, 1);
-        }
-      });
 
       if (this.level.endboss) {
         this.level.endboss.forEach((endboss, endbossIndex) => {
           if (throwableObject.isColliding(endboss)) {
-            console.log('Endboss: Leben vor Treffer', endboss.energyEndboss);
-
             endboss.hitBottleEndboss();
             endboss.minusEnergyEndboss();
             this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
             this.throwableObjects.splice(throwableIndex, 1);
-
-            console.log('Endboss: Leben nach Treffer', endboss.energyEndboss);
-
-            // Überprüfen, ob der Endboss tot ist und ihn dann entfernen
             if (endboss.isDead) {
               setTimeout(() => {
                 this.level.endboss.splice(endbossIndex, 1);
