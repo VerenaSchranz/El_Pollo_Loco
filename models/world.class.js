@@ -57,7 +57,6 @@ class World {
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
       } 
-
     }
   }
   checkCollisions() {
@@ -123,7 +122,9 @@ class World {
             endboss.minusEnergyEndboss();
             this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
             throwableObject.breakAndSplash();
+          setTimeout(() => {
             this.throwableObjects.splice(throwableIndex, 1);
+          }, 100);
             if (endboss.isDead) {
               setTimeout(() => {
                 this.level.endboss.splice(endbossIndex, 1);
