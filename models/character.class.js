@@ -136,6 +136,7 @@ IMAGES_SLEEPING = [
         }
       } else {
         this.playAnimation(this.IMAGES_WALKING);
+        this.setNewTimePassed();
       }
     }, 100);
   }
