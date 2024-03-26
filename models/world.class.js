@@ -122,6 +122,7 @@ class World {
             endboss.hitBottleEndboss();
             endboss.minusEnergyEndboss();
             this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
+            throwableObject.breakAndSplash();
             this.throwableObjects.splice(throwableIndex, 1);
             if (endboss.isDead) {
               setTimeout(() => {

@@ -58,7 +58,7 @@ class CollectableBottle extends MovableObject {
   }
   
   randomizePosition() {
-    this.x = 500 + Math.random() * 1800;
+    this.x = 200 + Math.random() * 1800;
   }
   animate() {
     setInterval(() => {

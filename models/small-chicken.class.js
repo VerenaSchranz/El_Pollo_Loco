@@ -31,7 +31,7 @@ class Smallchicken extends MovableObject {
     }
     
     randomizePosition() {
-      this.x = 200 + Math.random() * 1800;
+      this.x = 300 + Math.random() * 1800;
     }
   
   animate() {
