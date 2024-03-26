@@ -12,6 +12,46 @@ body {
   backdrop-filter: brightness(0.5);
 }
 
+.startscreen-div {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.startscreen-img {
+  display: flex;
+  justify-content: center;
+}
+
+.startscreen-img img {
+  height: 480px;
+  width: 720px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+
+button {
+  position: absolute;
+  width: 300px;
+  height: 60px;
+  z-index: 1;
+  border: none;
+  border-radius: 5px;
+  background: orange;
+  font-size: 25px;
+  font-family: 'Rye';
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+button:hover {
+  background: rgb(255, 111, 0);
+  transform: scale(1.05); 
+}
+
 @font-face {
   font-family: 'Inter', sans-serif;
   src: url(../fonts/Inter-Medium.ttf);
@@ -21,7 +61,6 @@ body {
   font-family: 'Rye';
   src: url("../fonts/Rye-Regular.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }
-
 
 h1 {
   color: #f2f2f2;
