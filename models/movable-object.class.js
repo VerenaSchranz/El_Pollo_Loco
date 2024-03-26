@@ -107,13 +107,14 @@ class MovableObject extends DrawableObject {
   }
   jump() {
     this.speedY = 30;
+    if (this.y <= 150) {
+      this.y = 150; 
+    }
   }
 
   jumpOnEnemy() {
     this.speedY = 15;    
-    // if (!this.character.y <= 150) {
-      // this.character.y = 150;  // Negative Geschwindigkeit für den Sprung nach oben
-    // }
+   
   }
   
 }
