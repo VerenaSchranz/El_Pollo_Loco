@@ -51,6 +51,7 @@ class World {
   checkThrowObjects() {
     if (this.character.energyBottle > 0) {
        if (this.keyboard.D) {
+        this.character.setNewTimePassed();
         let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.character.minusEnergyBottle();
