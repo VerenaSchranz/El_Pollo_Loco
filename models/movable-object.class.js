@@ -69,7 +69,6 @@ class MovableObject extends DrawableObject {
     this.energyBottle -= 20;
     if (this.energyBottle < 0) {
         this.energyBottle = 0;
-        // console.log("Nicht genug Energie");
     }
 }
 

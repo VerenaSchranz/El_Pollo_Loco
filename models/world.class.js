@@ -68,9 +68,9 @@ class World {
           if (!enemy.isDead) {
             enemy.isDead = true;
             this.character.immune = true;
-            console.log(this.character.immune);
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
+              this.character.immune = false;
             }, 250);
           }
         }
@@ -153,12 +153,9 @@ class World {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
       this.level.enemies.forEach((enemy, enemyIndex) => {
         if (throwableObject.isColliding(enemy)) {
-          console.log('Throwable collides with enemy');
 
           if (!enemy.isDead) {
             enemy.isDead = true;
-            this.character.immune = true;
-            console.log(this.character.immune);
             setTimeout(() => {
 
               this.level.enemies.splice(enemyIndex, 1);
