@@ -96,7 +96,8 @@ IMAGES_SLEEPING = [
   }
 
   animate() {
-    setInterval(() => {   this.walking_sound.pause();
+    setInterval(() => {   
+      this.walking_sound.pause();
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
