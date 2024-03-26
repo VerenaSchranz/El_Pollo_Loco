@@ -38,6 +38,8 @@ class World {
   run() {
     setInterval(() => {
       this.checkThrowObjects();
+    }, 500);
+    setInterval(() => {
       this.checkEndbossGetHit()
     }, 200);
     setInterval(() => {
@@ -48,12 +50,12 @@ class World {
   }
   checkThrowObjects() {
     if (this.character.energyBottle > 0) {
-      if (this.keyboard.D) {
+       if (this.keyboard.D) {
         let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-      }
+      } 
 
     }
   }

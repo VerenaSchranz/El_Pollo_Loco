@@ -47,7 +47,6 @@ IMAGES_BOTTLE_SPLASH = [
   throw() {
     this.throwBottleAir = true;
     this.speedY = 30;
-    console.log(this.speedY)
     this.applyGravity();
     if (this.otherDirection == true) { 
       setInterval(() => {
@@ -65,7 +64,6 @@ IMAGES_BOTTLE_SPLASH = [
     this.playAnimation(this.IMAGES_BOTTLE_SPLASH);
     this.speedY = 0;
     this.speedX = 0;
-    this.deletable = true;
   }
 
   animate() {
