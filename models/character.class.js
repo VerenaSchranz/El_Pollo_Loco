@@ -102,13 +102,16 @@ IMAGES_SLEEPING = [
       if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
-        this.walking_sound.play();
+        if (!mainSound) {
+          this.walking_sound.play();
+        }
       }
- 
       if (this.world.keyboard.LEFT && this.x > 0) {
         this.moveLeft();
         this.otherDirection = true;
+        if (!mainSound) {
         this.walking_sound.play();
+      }
       }
 
       if(this.world.keyboard.SPACE && !this.isAboveGround()) {
@@ -127,7 +130,6 @@ IMAGES_SLEEPING = [
             gameOver();
           }, 600);
       }
-       
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.setNewTimePassed();
