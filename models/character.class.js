@@ -121,11 +121,13 @@ IMAGES_SLEEPING = [
   
     setInterval(() => {
       if (this.isDead()) {
-        this.playAnimation(this.IMAGES_DEAD);
-        // this.dead_sound.cloneNode(true).play();
-        setInterval(() => {
-          gameOver();
-        }, 1500)
+        if (this.isDead()) {
+          this.playAnimation(this.IMAGES_DEAD);
+          setTimeout(() => {
+            gameOver();
+          }, 600);
+      }
+       
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.setNewTimePassed();
