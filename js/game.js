@@ -5,9 +5,10 @@ let intervalIds = [];
 let backgroundMusic = new Audio('./audio/background_music.mp3');
 backgroundMusic.volume = 0.2;
 backgroundMusic.loop = true;
-let backgroundSound = true;
+// let backgroundSound = true;
+let backgroundSound = false;
 
-playBackgroundMusic();
+playBackgroundMusic(); 
 
 function playBackgroundMusic() {
   if (backgroundSound) {
@@ -137,3 +138,4 @@ function setStoppableInterval(fn, time) {
   let id = setInterval(fn, time);
   intervalIds.push(id);
 }
+

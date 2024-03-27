@@ -1,5 +1,4 @@
 class MovableObject extends DrawableObject {
-
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -10,13 +9,15 @@ class MovableObject extends DrawableObject {
   energyEndboss = 100;
   lastHit = 0;
   immune = false;
+  hurt_sound = new Audio('./audio/hurt.mp3');
+  jump_sound = new Audio('./audio/jump.mp3');
+
   offset = {
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
   }
-
   
   applyGravity() {
       setInterval(()  => {
@@ -46,6 +47,7 @@ class MovableObject extends DrawableObject {
   hit(){
     if (!this.immune) {
         this.immune = true;
+        this.hurt_sound.play();
         this.energy -= 20;
         if (this.energy < 0) {
             this.energy = 0;
@@ -81,6 +83,7 @@ class MovableObject extends DrawableObject {
   
   isDead() {
     return this.energy == 0;
+    console.log("character tot");
   }
 
   isHurt() {
@@ -105,6 +108,7 @@ class MovableObject extends DrawableObject {
     this.x -= this.speed;
   }
   jump() {
+    this.jump_sound.cloneNode(true).play();
     this.speedY = 30;
     if (this.y <= 150) {
       this.y = 150; 

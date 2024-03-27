@@ -2,6 +2,7 @@ class ThrowableObject extends MovableObject {
   throwBottleAir = false;
   bottleSplash = false;
   isBreaking = false;
+  bottlesplash_sound = new Audio('./audio/bottlesplash.mp3');
   offset = { 
     top: 40 ,
     bottom: 60,
@@ -63,6 +64,7 @@ class ThrowableObject extends MovableObject {
     if (!this.isBreaking) {
       this.throwBottleAir = false;
       this.isBreaking = true;
+      this.bottlesplash_sound.cloneNode(true).play();
       this.playAnimation(this.IMAGES_BOTTLE_SPLASH, () => {
         this.fadeOut(); // Fading out the object after splash animation
       });
