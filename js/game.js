@@ -35,8 +35,10 @@ function updateMuteIcon() {
 
 function init() {
   startScreenClose();
+  playBackgroundMusic();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
+  
 }
 
 
