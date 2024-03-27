@@ -24,7 +24,6 @@ function init() {
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('gameOverScreen').classList.add('d-none');
-
   document.getElementById('canvas').classList.remove('d-none');
 }
 
@@ -87,10 +86,9 @@ function gameOver() {
 }
 
 function winGame() {
-  // document.getElementById("winGameScreen").remove.classList('d-none');
-  document.getElementById("canvas").add.classList('d-none');
-  document.getElementById("winGameScreen").remove.classList('d-none');
-  gameisOver();
+  document.getElementById("winGameScreen").classList.remove('d-none');
+  stopGame();
+  backgroundMusic.pause();
 }
 
 function restartGame() {
@@ -99,7 +97,6 @@ function restartGame() {
   document.getElementById("winGameScreen").classList.add('d-none');
   document.getElementById("canvas").classList.remove('d-none');
   startScreenClose();
-  // gameisOver();
   init();
 }
 
