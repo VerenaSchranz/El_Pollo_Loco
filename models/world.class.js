@@ -38,7 +38,7 @@ class World {
   run() {
     setInterval(() => {
       this.checkThrowObjects();
-    }, 500);
+    }, 300);
     setInterval(() => {
       this.checkEndbossGetHit()
     }, 200);
@@ -49,7 +49,7 @@ class World {
     }, 25);
   }
   checkThrowObjects() {
-/*     if (this.character.energyBottle > 0) {
+    if (this.character.energyBottle > 0) {
        if (this.keyboard.D) {
         this.character.setNewTimePassed();
         let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
@@ -57,15 +57,9 @@ class World {
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
       } 
-    } */
-    if (this.keyboard.D) {
-      this.character.setNewTimePassed();
-      let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
-      this.throwableObjects.push(bottle);
-      this.character.minusEnergyBottle();
-      this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
     } 
   }
+  
   checkCollisions() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy, index)) {
