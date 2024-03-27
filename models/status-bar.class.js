@@ -107,8 +107,8 @@ class StatusBarCoin extends DrawableObject {
   constructor() {
     super();
     this.loadImages(this.IMAGES);
-    this.x = 250;
-    this.y = 0;
+    this.x = 20;
+    this.y = 100;
     this.width = 200;
     this.height = 60;
     this.setPercentageCoin(0);
@@ -155,7 +155,7 @@ class StatusBarEndboss extends DrawableObject {
   constructor() {
     super();
     this.loadImages(this.IMAGES);
-    this.x = 480;
+    this.x = 250;
     this.y = 0;
     this.width = 200;
     this.height = 60;

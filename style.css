@@ -12,34 +12,31 @@ body {
   backdrop-filter: brightness(0.5);
 }
 
+.game-container {
+  position: relative;
+}
+
 .startscreen-div {
     display: flex;
     justify-content: center;
     position: relative;
     width: 720px;
-    height: auto;
+    height: 480px;
 }
-.btn {
+
+.btn {    
   position: absolute;
   z-index: 3;
   width: 10px;
   height: 10px;
-  right: 50px;
+  right: 45px;
   cursor: pointer;
-  top: 11px;
+  top: 10px;
 }
+
 .btn-container {
   display: flex;
   justify-content: space-between;
-}
-.btn {
-  position: absolute;
-  z-index: 3;
-  width: 10px;
-  height: 10px;
-  right: 50px;
-  cursor: pointer;
-  top: 11px;
 }
 
 .btn img {
