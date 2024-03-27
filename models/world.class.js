@@ -129,6 +129,7 @@ class World {
               setTimeout(() => {
                 this.level.endboss.splice(endbossIndex, 1);
               }, 500);
+              winGame();
             }
           }
         });

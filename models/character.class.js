@@ -121,6 +121,9 @@ IMAGES_SLEEPING = [
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        setInterval(() => {
+          gameOver();
+        }, 1500)
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
         this.setNewTimePassed();
