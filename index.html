@@ -50,11 +50,24 @@
           <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
         </div> 
       </div>
+      <div id="winGameScreen" class="startscreen-div d-none">
+        <div class="startscreen-img">
+          <button onclick="restartGame()">Restart</button>
+          <img src="img/9_intro_outro_screens/winGame/winGame.jpg" alt="">
+        </div> 
+      </div>
+
+      <div id="gameOverScreen" class="startscreen-div d-none">
+        <div class="startscreen-img">
+          <button onclick="restartGame()">Restart</button>
+          <img src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
+        </div> 
+      </div>
       <!-- <div id="endScreen" class="startscreen"><img src="img/9_intro_outro_screens/start/startscreen_1.png" alt=""></div>  -->
       <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
       <div class="instruction">
-        <div class="col-1">Walk : <= | =></div>
-        <div class="col-1">Jump : Space</div>
+        <div class="col-1">Walk: <= | =></div>
+        <div class="col-1">Jump: Space</div>
         <div class="col-1">D: Attack</div>
       </div>
     </section>
