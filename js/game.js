@@ -2,12 +2,44 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let intervalIds = [];
-let muteSoundsInGame = false;
+let backgroundMusic = new Audio('./audio/background_music.mp3');
+backgroundMusic.volume = 0.2;
+backgroundMusic.loop = true;
+// let backgroundSound = true;
+let backgroundSound = false;
+
+playBackgroundMusic(); 
+
+function playBackgroundMusic() {
+  if (backgroundSound) {
+    backgroundMusic.play();
+  } else {
+    backgroundMusic.pause();
+  }
+}
+
+function toggleMute() {
+  backgroundSound = !backgroundSound;
+  playBackgroundMusic();
+  updateMuteIcon();
+}
+
+function updateMuteIcon() {
+  let muteIcon = document.getElementById('muteIcon');
+  if (backgroundSound) {
+    muteIcon.src = './img/12_icons/sound_on.svg';
+  } else {
+    muteIcon.src = './img/12_icons/sound_off.svg';
+  }
+}
+
 
 function init() {
   startScreenClose();
+  playBackgroundMusic();
   canvas = document.getElementById('canvas');
   world = new World(canvas, keyboard);
+  
 }
 
 
@@ -106,3 +138,4 @@ function setStoppableInterval(fn, time) {
   let id = setInterval(fn, time);
   intervalIds.push(id);
 }
+

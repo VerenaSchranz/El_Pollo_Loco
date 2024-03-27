@@ -20,6 +20,11 @@ class World {
   addedBottles = [];
   throwableObjects = [];
   bottleSplash = false;
+  dead_sound = new Audio('./audio/chickenDead.mp3');
+  collectcoin_sound = new Audio('./audio/collectcoin.mp3');
+  collectbottle_sound = new Audio('./audio/collectbottle.mp3');
+
+
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
@@ -50,16 +55,16 @@ class World {
   }
   checkThrowObjects() {
     if (this.character.energyBottle > 0) {
-       if (this.keyboard.D) {
+      if (this.keyboard.D) {
         this.character.setNewTimePassed();
         let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
         this.throwableObjects.push(bottle);
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-      } 
-    } 
+      }
+    }
   }
-  
+
   checkCollisions() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy, index)) {
@@ -68,6 +73,7 @@ class World {
           this.character.jumpOnEnemy();
           if (!enemy.isDead) {
             enemy.isDead = true;
+            this.dead_sound.cloneNode(true).play();
             this.character.immune = true;
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
@@ -93,6 +99,7 @@ class World {
       if (this.character.isColliding(coins)) {
         this.character.addEnergyCoin();
         this.addedCoins.push({ coin: coins, index: index });
+        this.collectcoin_sound.cloneNode(true).play();
         this.level.collectableCoins.splice(index, 1);
         this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
         console.log(world.statusBarCoin.percentageCoin);
@@ -104,9 +111,10 @@ class World {
         if (this.character.energyBottle < 100) {
           this.character.addEnergyBottle();
           this.addedBottles.push({ bottle: bottle, index: index });
+          this.collectbottle_sound.cloneNode(true).play();
           this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
           this.level.collectableBottles.splice(index, 1);
-        
+
         }
       }
     });
@@ -123,9 +131,9 @@ class World {
             endboss.minusEnergyEndboss();
             this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
             throwableObject.breakAndSplash();
-          setTimeout(() => {
-            this.throwableObjects.splice(throwableIndex, 1);
-          }, 100);
+            setTimeout(() => {
+              this.throwableObjects.splice(throwableIndex, 1);
+            }, 100);
             if (endboss.isDead) {
               setTimeout(() => {
                 this.level.endboss.splice(endbossIndex, 1);
@@ -159,7 +167,7 @@ class World {
           if (!enemy.isDead) {
             enemy.isDead = true;
             setTimeout(() => {
-
+              this.dead_sound.play();
               this.level.enemies.splice(enemyIndex, 1);
             }, 250);
           }

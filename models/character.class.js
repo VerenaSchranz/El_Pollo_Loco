@@ -3,6 +3,7 @@ class Character extends MovableObject {
   y = 80;
   speed = 10;
   timePassed = 0;
+  dead_sound = new Audio('./audio/character-death.mp3');
   offset = {
     top: 110,
     bottom: 120,
@@ -121,6 +122,7 @@ IMAGES_SLEEPING = [
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        this.dead_sound.cloneNode(true).play();
         setInterval(() => {
           gameOver();
         }, 1500)
