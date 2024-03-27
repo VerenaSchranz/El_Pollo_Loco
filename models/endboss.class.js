@@ -108,7 +108,9 @@ isDeadEndboss() {
 
       if (this.isDead) {
         this.playAnimation(this.IMAGES_DEAD);
-
+        setTimeout(() => {
+          winGame();
+          }, 700)
       } else if (this.aggressive) {
         this.playAnimation(this.IMAGES_ATTACK);
 
