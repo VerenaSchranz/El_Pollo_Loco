@@ -8,45 +8,22 @@ backgroundMusic.loop = true;
 // let backgroundSound = true;
 let backgroundSound = false;
 
-playBackgroundMusic(); 
+playBackgroundMusic();
 
-function playBackgroundMusic() {
-  if (backgroundSound) {
-    backgroundMusic.play();
-  } else {
-    backgroundMusic.pause();
-  }
-}
-
-function toggleMute() {
-  backgroundSound = !backgroundSound;
-  playBackgroundMusic();
-  updateMuteIcon();
-}
-
-function updateMuteIcon() {
-  let muteIcon = document.getElementById('muteIcon');
-  if (backgroundSound) {
-    muteIcon.src = './img/12_icons/sound_on.svg';
-  } else {
-    muteIcon.src = './img/12_icons/sound_off.svg';
-  }
-}
 
 
 function init() {
   startScreenClose();
   playBackgroundMusic();
   canvas = document.getElementById('canvas');
+  initLevel();
   world = new World(canvas, keyboard);
-  
 }
 
 
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('gameOverScreen').classList.add('d-none');
-
   document.getElementById('canvas').classList.remove('d-none');
 }
 
@@ -104,20 +81,14 @@ document.addEventListener("keyup", (e) => {
 
 function gameOver() {
   document.getElementById("gameOverScreen").classList.remove('d-none');
-  gameisOver();
+  stopGame();
+  backgroundMusic.pause();
 }
 
 function winGame() {
-  // document.getElementById("winGameScreen").remove.classList('d-none');
-  document.getElementById("canvas").add.classList('d-none');
-  document.getElementById("winGameScreen").remove.classList('d-none');
-  gameisOver();
-}
-
-function gameisOver() {
-  for (let i = 1; i < 9999; i++){ 
-    window.clearInterval(i);
-  }
+  document.getElementById("winGameScreen").classList.remove('d-none');
+  stopGame();
+  backgroundMusic.pause();
 }
 
 function restartGame() {
@@ -126,16 +97,40 @@ function restartGame() {
   document.getElementById("winGameScreen").classList.add('d-none');
   document.getElementById("canvas").classList.remove('d-none');
   startScreenClose();
-  stopGame();
   init();
 }
 
 function stopGame() {
-intervalIds = [];}
-
+  for (let i = 1; i < 9999; i++) {
+    window.clearInterval(i);
+  }
+}
 
 function setStoppableInterval(fn, time) {
   let id = setInterval(fn, time);
   intervalIds.push(id);
 }
 
+
+function playBackgroundMusic() {
+  if (backgroundSound) {
+    backgroundMusic.play();
+  } else {
+    backgroundMusic.pause();
+  }
+}
+
+function toggleMute() {
+  backgroundSound = !backgroundSound;
+  playBackgroundMusic();
+  updateMuteIcon();
+}
+
+function updateMuteIcon() {
+  let muteIcon = document.getElementById('muteIcon');
+  if (backgroundSound) {
+    muteIcon.src = './img/12_icons/sound_on.svg';
+  } else {
+    muteIcon.src = './img/12_icons/sound_off.svg';
+  }
+}

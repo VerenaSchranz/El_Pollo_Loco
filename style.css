@@ -14,6 +14,8 @@ body {
 
 .game-container {
   position: relative;
+  width: 720px;
+  height: 480px;
 }
 
 .startscreen-div {
@@ -22,6 +24,19 @@ body {
     position: relative;
     width: 720px;
     height: 480px;
+    position: absolute;
+    top: 0;
+    z-index: 8;
+    background: #00000087;
+}
+
+h2 {
+  position: absolute;
+    z-index: 6;
+    color: orange;
+    font-size: 115px;
+    font-family: 'Rye';
+    margin-top: 180px;
 }
 
 .btn {    

@@ -32,7 +32,6 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
     this.run();
   }
 
