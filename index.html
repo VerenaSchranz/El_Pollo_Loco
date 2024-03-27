@@ -45,23 +45,29 @@
     <section class="background">
       <h1>El pollo loco</h1>
       <div id="startScreen" class="startscreen-div">
+        <div id="mute" class="btn" onclick="toggleMute()">
+          <img id="muteIcon" src="./img/12_icons/sound_on.svg" alt="" />
+        </div>
         <div class="startscreen-img">
           <button onclick="init()">Start Game</button>
-          <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
-        </div> 
+          <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+        </div>
       </div>
       <div id="winGameScreen" class="startscreen-div d-none">
         <div class="startscreen-img">
           <button onclick="restartGame()">Restart</button>
-          <img src="img/9_intro_outro_screens/winGame/winGame.jpg" alt="">
-        </div> 
+          <!-- <img src="img/9_intro_outro_screens/winGame/winGame.jpg" alt=""> -->
+        </div>
       </div>
 
       <div id="gameOverScreen" class="startscreen-div d-none">
         <div class="startscreen-img">
           <button onclick="restartGame()">Restart</button>
-          <img src="img/9_intro_outro_screens/game_over/game over!.png" alt="">
-        </div> 
+          <img
+            src="img/9_intro_outro_screens/game_over/game over!.png"
+            alt=""
+          />
+        </div>
       </div>
       <!-- <div id="endScreen" class="startscreen"><img src="img/9_intro_outro_screens/start/startscreen_1.png" alt=""></div>  -->
       <canvas id="canvas" class="d-none" width="720" height="480"></canvas>

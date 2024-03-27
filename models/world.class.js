@@ -21,6 +21,7 @@ class World {
   throwableObjects = [];
   bottleSplash = false;
 
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
