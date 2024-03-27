@@ -72,7 +72,9 @@ class World {
           this.character.jumpOnEnemy();
           if (!enemy.isDead) {
             enemy.isDead = true;
-            this.dead_sound.cloneNode(true).play();
+            if (!mainSound) {
+              this.dead_sound.cloneNode(true).play();
+            }
             this.character.immune = true;
             setTimeout(() => {
               this.level.enemies.splice(index, 1);
@@ -98,7 +100,9 @@ class World {
       if (this.character.isColliding(coins)) {
         this.character.addEnergyCoin();
         this.addedCoins.push({ coin: coins, index: index });
-        this.collectcoin_sound.cloneNode(true).play();
+        if (!mainSound) {
+          this.collectcoin_sound.cloneNode(true).play();
+        }
         this.level.collectableCoins.splice(index, 1);
         this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
         console.log(world.statusBarCoin.percentageCoin);
@@ -110,7 +114,9 @@ class World {
         if (this.character.energyBottle < 100) {
           this.character.addEnergyBottle();
           this.addedBottles.push({ bottle: bottle, index: index });
-          this.collectbottle_sound.cloneNode(true).play();
+          if (!mainSound) {
+            this.collectbottle_sound.cloneNode(true).play();
+          }
           this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
           this.level.collectableBottles.splice(index, 1);
 
@@ -210,6 +216,7 @@ class World {
       self.draw();
     });
   }
+
 
   addObjectsToMap(objects) {
     objects.forEach(o => {

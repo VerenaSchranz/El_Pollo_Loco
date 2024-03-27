@@ -64,7 +64,9 @@ class ThrowableObject extends MovableObject {
     if (!this.isBreaking) {
       this.throwBottleAir = false;
       this.isBreaking = true;
-      this.bottlesplash_sound.cloneNode(true).play();
+      if (!mainSound) {
+        this.bottlesplash_sound.cloneNode(true).play();
+      }
       this.playAnimation(this.IMAGES_BOTTLE_SPLASH, () => {
         this.fadeOut(); // Fading out the object after splash animation
       });

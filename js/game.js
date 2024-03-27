@@ -6,8 +6,8 @@ let backgroundMusic = new Audio('./audio/background_music.mp3');
 backgroundMusic.volume = 0.2;
 backgroundMusic.loop = true;
 // let backgroundSound = true;
-let backgroundSound = false;
-
+let backgroundSound = true;
+let mainSound = false;
 playBackgroundMusic();
 
 
@@ -121,6 +121,7 @@ function playBackgroundMusic() {
 }
 
 function toggleMute() {
+  mainSound = !mainSound;
   backgroundSound = !backgroundSound;
   playBackgroundMusic();
   updateMuteIcon();
