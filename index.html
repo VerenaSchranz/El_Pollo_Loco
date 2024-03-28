@@ -59,8 +59,16 @@
          
         <div id="startScreen" class="startscreen-div">
           <div class="startscreen-img">
-            <button onclick="init()">Start Game</button>
-            <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+            <div class="flex-container">
+              <button onclick="init()">Start Game</button>
+              <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+            </div>
+            <div id="popupIntroText" class="popup-intro-text">
+              <div class="close-div">
+                <img class="btn-close" src="img/12_icons/close.svg" alt="">
+                Willkommen zu "Pepe's Hühnerjagd"! In diesem actiongeladenen Spiel schlüpfst du in die Rolle von Pepe, einem mutigen Helden mit einem wichtigen Ziel: die Welt vor dem großen, bösen Hühnchen zu retten.
+              </div>
+            </div>
           </div>
         </div>
         <div id="winGameScreen" class="startscreen-div d-none">
@@ -75,7 +83,6 @@
               <button onclick="backToMenu()">Back to Menu</button>
               <button onclick="restartGame()">Restart</button>
             </div>
-
             <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="" />
           </div>
         </div>
