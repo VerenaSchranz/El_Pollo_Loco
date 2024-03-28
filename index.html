@@ -45,9 +45,18 @@
     <section class="background">
       <h1>El Pollo Loco</h1>
       <div class="game-container">
-        <div id="mute" class="btn" onclick="toggleMute()">
-          <img id="muteIcon" src="./img/12_icons/sound_on.svg" alt="" />
-        </div>
+        <div class="btn-container">
+          <div class="btn-flex">
+            <div id="infoBtn" class="btn" onclick="">
+              <img src="./img/12_icons/info.svg" alt="" />
+            </div>
+            <div id="mute" class="btn btn-mute" onclick="toggleMute()">
+              <img id="muteIcon" src="./img/12_icons/sound_on.svg" alt="" />
+            </div>
+          </div>
+          </div>
+
+         
         <div id="startScreen" class="startscreen-div">
           <div class="startscreen-img">
             <button onclick="init()">Start Game</button>
@@ -58,12 +67,15 @@
           <div class="startscreen-img">
             <button onclick="restartGame()">Restart</button>
            <H2>WIN</H2> 
-            <!-- <img src="img/9_intro_outro_screens/winGame/winGame.jpg" alt=""> -->
           </div>
         </div>
         <div id="gameOverScreen" class="startscreen-div d-none">
           <div class="startscreen-img">
-            <button onclick="restartGame()">Restart</button>
+            <div class="btn-flex">
+              <button onclick="backToMenu()">Back to Menu</button>
+              <button onclick="restartGame()">Restart</button>
+            </div>
+
             <img src="img/9_intro_outro_screens/game_over/oh no you lost!.png" alt="" />
           </div>
         </div>

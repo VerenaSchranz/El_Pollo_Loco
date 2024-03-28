@@ -24,7 +24,17 @@ function init() {
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('gameOverScreen').classList.add('d-none');
+  document.getElementById('infoBtn').classList.add('d-none');
   document.getElementById('canvas').classList.remove('d-none');
+}
+
+function backToMenu() {
+  document.getElementById('startScreen').classList.remove('d-none');
+  document.getElementById('infoBtn').classList.remove('d-none');
+  document.getElementById("gameOverScreen").classList.add('d-none');
+  document.getElementById("winGameScreen").classList.add('d-none');
+  document.getElementById("canvas").classList.remove('d-none');
+  document.getElementById("mute").classList.remove('d-none');
 }
 
 document.addEventListener("keydown", (e) => {
@@ -82,12 +92,14 @@ document.addEventListener("keyup", (e) => {
 function gameOver() {
   document.getElementById("gameOverScreen").classList.remove('d-none');
   stopGame();
+  document.getElementById("mute").classList.add('d-none');
   backgroundMusic.pause();
 }
 
 function winGame() {
   document.getElementById("winGameScreen").classList.remove('d-none');
   stopGame();
+  document.getElementById("mute").classList.add('d-none');
   backgroundMusic.pause();
 }
 
@@ -96,6 +108,7 @@ function restartGame() {
   document.getElementById("gameOverScreen").classList.add('d-none');
   document.getElementById("winGameScreen").classList.add('d-none');
   document.getElementById("canvas").classList.remove('d-none');
+  document.getElementById("mute").classList.remove('d-none');
   startScreenClose();
   init();
 }

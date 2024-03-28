@@ -40,12 +40,35 @@ h2 {
     margin-top: 180px;
 }
 
-.btn {    
+.btn-flex {
+    display: flex;
+    justify-content: end;
+    gap: 12px;
+    width: 100%;
+    margin: 10px 20px;
+}
+
+.btn-container {
   position: absolute;
   z-index: 10;
-  right: 45px;
+  width: 100%;
+}
+
+
+.btn {    
   cursor: pointer;
-  top: 10px;
+  background: orange;
+  border-radius: 5px;
+  width: 45px;
+  align-items: center;
+  text-align: center;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: rgb(255, 111, 0);
+  transform: scale(1.04); 
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 .btn-container {
@@ -82,7 +105,7 @@ h2 {
 }
 
 button {
-  position: absolute;
+  /* position: absolute; */
   width: 220px;
   height: 60px;
   z-index: 1;
@@ -95,7 +118,6 @@ button {
   cursor: pointer;
   transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
-
 }
 
 button:hover {
