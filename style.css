@@ -154,29 +154,15 @@ img.btn-close {
   border-radius: 10px 10px 0px 0px;
 }
 
-.popup-intro-text {    /* 
-  position: absolute;
-  z-index: 80;
-  background: #cacaca;
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  width: 24%;
-  transition: bottom 0.5s ease, opacity 0.5s ease;
-  right: 0px;
-  border-radius: 5px;
-  padding: 30px;
-  line-height: 1.5;
-  width: fit-content; */
+.popup-intro-text {
   opacity: 1 !important;
   bottom: 0px;
   position: absolute;
   width: 100%;
-  transition: opacity 0.5s ease, bottom 0.5s ease; /* Transition definieren */
-
+  transition: opacity 0.5s ease, bottom 0.5s ease;
 }
 
 button {
-  /* position: absolute; */
   width: 220px;
   height: 60px;
   z-index: 1;
