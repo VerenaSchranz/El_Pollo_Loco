@@ -11,7 +11,11 @@ body {
   background-size: cover;
   backdrop-filter: brightness(0.5);
 }
-
+h3 {
+  font-family: 'Rye';
+  line-height: 0;
+  
+}
 .game-container {
   position: relative;
   width: 720px;
@@ -41,6 +45,32 @@ h2 {
     font-size: 115px;
     font-family: 'Rye';
     margin-top: 180px;
+}
+.popup-content {
+  position: absolute;
+  z-index: 80;
+  background: #cacaca;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  width: 24%;
+  right: 0px;
+  border-radius: 5px;
+  padding: 30px;
+  line-height: 1.5;
+  width: fit-content;
+  bottom: -211px;
+  opacity: 0;
+  transition: opacity 0.5s ease, bottom 0.5s ease; /* Transition definieren */
+}
+
+
+.popupHideWrapper {
+  opacity: 1!important;
+  bottom: 210px!important;
+}
+.popupHideInnerContent {
+  /* bottom: 0px; */
+  opacity: 1!important;
 }
 
 .btn-flex {
@@ -114,28 +144,37 @@ h2 {
 img.btn-close {
   height: auto;
   position: absolute;
-  top: -40%;
-  left: 50%;
+  top: -18px;
+    left: 50%;
   transform: translate(-50%, -50%);
-  background: orange;
+  background: #cacaca;
   width: 40px;
+  z-index: 90;
   cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
 }
 
-.popup-intro-text {
+.popup-intro-text {    /* 
   position: absolute;
   z-index: 80;
   background: #cacaca;
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   width: 24%;
-  bottom: 0;
+  transition: bottom 0.5s ease, opacity 0.5s ease;
   right: 0px;
   border-radius: 5px;
   padding: 30px;
   line-height: 1.5;
-  width: fit-content;
+  width: fit-content; */
+  opacity: 1 !important;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  transition: opacity 0.5s ease, bottom 0.5s ease; /* Transition definieren */
+
 }
+
 button {
   /* position: absolute; */
   width: 220px;
