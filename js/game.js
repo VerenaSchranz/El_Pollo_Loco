@@ -165,3 +165,39 @@ document.addEventListener("keyup", (e) => {
     keyboard.D = false;
   }
 });
+
+
+
+function popupToggleFirst() {
+  const popupFirst = document.getElementById('popupIntroTextFirst');
+  const popupContentFirst = document.getElementById('popupContentFirst');
+  popupFirst.classList.toggle('popupHideWrapperFirst');
+  popupContentFirst.classList.toggle('popupHideInnerContentFirst');
+  changeImage(popupFirst, 'imageChangeFirst', 'book');
+}
+
+function popupToggleSecond() {
+  const popupSecond = document.getElementById('popupIntroTextSecond');
+  const popupContentSecond = document.getElementById('popupContentSecond');
+  popupSecond.classList.toggle('popupHideWrapperSecond');
+  popupContentSecond.classList.toggle('popupHideInnerContentSecond');
+  changeImage(popupSecond, 'imageChangeSecond', 'info');
+}
+
+function changeImage(popup, imageId, iconType) {
+  const imageElement = document.getElementById(imageId);
+  const isHidden = popup.classList.contains('popupHideWrapperFirst') || popup.classList.contains('popupHideWrapperSecond');
+
+  if (isHidden) {
+    imageElement.src = "./img/12_icons/close.svg"; 
+  } else {
+    if (iconType === 'info') {
+      imageElement.src = "./img/12_icons/book.svg"; 
+    }
+    if (iconType === 'book') {
+      imageElement.src = "./img/12_icons/info.svg"; 
+    }
+  }
+}
+
+
