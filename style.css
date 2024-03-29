@@ -59,13 +59,13 @@ h2 {
   width: 24%;
   transform: translateX(-10%);
   right: 0px;
-  border-radius: 5px;
+  border-radius: 5px 11px 0 0;
   padding: 30px;
   line-height: 1.5;
   width: 80%;
   bottom: -211px;
   opacity: 0;
-  transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
+  transition: opacity 0.9s ease, bottom 0.5s ease;
 }
 
 .popup-content-second {
@@ -77,13 +77,13 @@ h2 {
   width: 24%;
   transform: translateX(-10%);
   right: 0px;
-  border-radius: 5px;
+  border-radius: 5px 11px 0 0;
   padding: 16px 30px;
   line-height: 1.5;
   width: 80%;
   /* bottom: -250px; */
   opacity: 0;
-  transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
+  transition: opacity 0.9s ease, bottom 0.5s ease;
 }
 
 
@@ -94,7 +94,7 @@ h2 {
 
 .popupHideWrapperSecond {
   opacity: 1!important;
-  bottom: 190px!important; /* höhe verstellbar */
+  bottom: 193px!important; /* höhe verstellbar */
 }
 
 .popupHideInnerContentFirst {
@@ -259,13 +259,15 @@ h1 {
 
 .instruction-popup-item  {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: normal;
   margin-top: 20px;
+  gap: 10px;
+  align-items: center;
 }
 
 .instruction-popup img {
-  width: 40px;
-  height: auto;
+  height: 40px;
+  width: auto;
   position: relative;
 }
 canvas {
