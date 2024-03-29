@@ -48,7 +48,10 @@
         <div class="btn-container">
           <div class="btn-flex">
             <div id="infoBtn" class="btn" onclick="">
-              <img src="./img/12_icons/info.svg" alt="" />
+              <a href="imprint.html" target="_blank">
+                <img src="./img/12_icons/link.svg" alt="" />
+              </a>
+
             </div>
             <div id="mute" class="btn btn-mute" onclick="toggleMute()">
               <img id="muteIcon" src="./img/12_icons/sound_on.svg" alt="" />
@@ -89,42 +92,42 @@
                 alt=""
               />
               <div id="popupContentSecond" class="popup-content-second">
-                <h3>test</h3>
+                <h3>Instruction</h3>
                 <div class="instruction-popup">
-                  <div class="instruction-popup-item"><img src="./img/12_icons/left_arrow.png" alt=""><strong>Left Arrow:</strong> Move Left</div>
-                  <div class="instruction-popup-item"><img src="./img/12_icons/right_arrow.png" alt=""><strong>Right Arrow:</strong> Move Right</div>
-                  <div class="instruction-popup-item"><img src="./img/12_icons/space.png" alt=""><strong>Space Bar:</strong> Jump</div>
-                  <div class="instruction-popup-item"><img src="./img/12_icons/d_button.png" alt=""><strong>D:</strong> Attack</div>
+                  <div class="col-1">    
+                    <div class="instruction-popup-item"><img src="./img/12_icons/left_arrow.png" alt="">Move Left</div>
+                  <div class="instruction-popup-item"><img src="./img/12_icons/right_arrow.png" alt=""> Move Right</div>
                 </div>
+                  <div class="col-1">
+                    <div class="instruction-popup-item"><img src="./img/12_icons/space.png" alt="">Jump</div>
+                  <div class="instruction-popup-item"><img src="./img/12_icons/d_button.png" alt="">Attack</div>
+                </div>
+              </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div id="winGameScreen" class="startscreen-div d-none">
-          <div class="startscreen-img">
-            <button onclick="restartGame()">Restart</button>
-            <h2>WIN</h2>
-          </div>
-        </div>
-        <div id="gameOverScreen" class="startscreen-div d-none">
-          <div class="startscreen-img">
-            <div class="btn-flex">
-              <button onclick="backToMenu()">Back to Menu</button>
+          <div id="winGameScreen" class="startscreen-div d-none">
+            <div class="startscreen-img">
               <button onclick="restartGame()">Restart</button>
+              <h2>WIN</h2>
             </div>
-            <img
-              src="img/9_intro_outro_screens/game_over/oh no you lost!.png"
-              alt=""
-            />
           </div>
+          <div id="gameOverScreen" class="startscreen-div d-none">
+            <div class="startscreen-img">
+              <div class="btn-container-restart">
+                <button onclick="backToMenu()">Back to Menu</button>
+                <button onclick="restartGame()">Restart</button>
+              </div>
+              <img
+                src="img/9_intro_outro_screens/game_over/oh no you lost!.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
         </div>
-        <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
-        <div class="instruction">
-          <div class="col-1">Walk: <= | =></div>
-          <div class="col-1">Jump: Space</div>
-          <div class="col-1">D: Attack</div>
-        </div>
+        
       </div>
     </section>
   </body>

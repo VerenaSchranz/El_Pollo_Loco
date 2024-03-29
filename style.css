@@ -11,6 +11,7 @@ body {
   background-size: cover;
   backdrop-filter: brightness(0.5);
 }
+
 h3 {
   font-family: 'Rye';
   line-height: 0;
@@ -22,6 +23,9 @@ h3 {
   height: 480px;
 }
 
+.col-1 {
+  width: 50%;
+}
 .flex-container {
     display: flex;
     justify-content: center;
@@ -53,6 +57,7 @@ h2 {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   width: 24%;
+  transform: translateX(-10%);
   right: 0px;
   border-radius: 5px;
   padding: 30px;
@@ -70,12 +75,13 @@ h2 {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   width: 24%;
+  transform: translateX(-10%);
   right: 0px;
   border-radius: 5px;
-  padding: 30px;
+  padding: 16px 30px;
   line-height: 1.5;
   width: 80%;
-  bottom: -211px;
+  /* bottom: -250px; */
   opacity: 0;
   transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
 }
@@ -88,7 +94,7 @@ h2 {
 
 .popupHideWrapperSecond {
   opacity: 1!important;
-  bottom: 210px!important;
+  bottom: 190px!important; /* höhe verstellbar */
 }
 
 .popupHideInnerContentFirst {
@@ -100,17 +106,18 @@ h2 {
 
 .btn-flex {
     display: flex;
-    justify-content: end;
     gap: 12px;
-    width: 100%;
     margin: 10px 20px;
 }
 
 .btn-container {
+  display: flex;
+  justify-content: end;
   position: absolute;
   z-index: 20;
   width: 100%;
 }
+
 
 .btn {    
   cursor: pointer;
@@ -129,9 +136,9 @@ h2 {
   transform: scale(1.04); 
 }
 
-.btn-container {
+.btn-container-restart {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .btn img {
@@ -159,16 +166,24 @@ h2 {
 .close-div {
   position: relative;
 }
+.imprint-div {
+  background: #cacaca;
+  font-family: 'Inter', sans-serif;
+  width: 70%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 50px;
+}
 
 img.btn-close {
   height: auto;
   position: absolute;
-  top: -18px;
+  top: -19px;
   left: 10%;
   transform: translate(-50%, -50%);
   background: #cacaca;
   width: 40px;
-  z-index: 90;
+  z-index: 99;
   cursor: pointer;
   border-radius: 10px 10px 0px 0px;
 }
@@ -182,7 +197,7 @@ img.btn-close-second {
   transform: translate(-50%, -50%);
   background: #cacaca;
   width: 40px;
-  z-index: 50;
+  z-index: 79;
   cursor: pointer;
   border-radius: 10px 10px 0px 0px;
 }
@@ -235,27 +250,23 @@ h1 {
   text-align: center;
   font-family: 'Rye', sans-serif;}
 
-.instruction {    
-  font-family: 'Inter', sans-serif;
-  color: #f2f2f2;
-  font-size: 30px;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
 
 .instruction-popup {
   width: 100%;
+  display: flex;
+  gap: 50px;
 }
 
 .instruction-popup-item  {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
 
 .instruction-popup img {
-  width: 16px;
+  width: 40px;
   height: auto;
+  position: relative;
 }
 canvas {
     background-color: black;
