@@ -57,7 +57,7 @@ h2 {
   border-radius: 5px;
   padding: 30px;
   line-height: 1.5;
-  width: fit-content;
+  width: 80%;
   bottom: -211px;
   opacity: 0;
   transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
@@ -65,7 +65,7 @@ h2 {
 
 .popup-content-second {
   position: absolute;
-  z-index: 80;
+  z-index: 100;
   background: #cacaca;
   font-family: 'Inter', sans-serif;
   font-size: 18px;
@@ -74,7 +74,7 @@ h2 {
   border-radius: 5px;
   padding: 30px;
   line-height: 1.5;
-  width: fit-content;
+  width: 80%;
   bottom: -211px;
   opacity: 0;
   transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
@@ -242,6 +242,20 @@ h1 {
   display: flex;
   justify-content: space-between;
   padding: 10px;
+}
+
+.instruction-popup {
+  width: 100%;
+}
+
+.instruction-popup-item  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.instruction-popup img {
+  width: 16px;
+  height: auto;
 }
 canvas {
     background-color: black;
