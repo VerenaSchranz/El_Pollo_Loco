@@ -10,19 +10,41 @@ let backgroundSound = true;
 let mainSound = false;
 playBackgroundMusic();
 
-function popupToggle() {
-  const popup = document.getElementById('popupIntroText');
-  const popupContent = document.getElementById('popupContent');
-  const imageChange = document.getElementById('imageChange');
-  popup.classList.toggle('popupHideWrapper');
-  popupContent.classList.toggle('popupHideInnerContent');
-  
-  if (popup.classList.contains('popupHideWrapper')) {
-    imageChange.src = "./img/12_icons/close.svg"; // Pfad zum anderen Bild ändern
+function popupToggleFirst() {
+  const popupFirst = document.getElementById('popupIntroTextFirst');
+  const popupContentFirst = document.getElementById('popupContentFirst');
+  popupFirst.classList.toggle('popupHideWrapperFirst');
+  popupContentFirst.classList.toggle('popupHideInnerContentFirst');
+  changeImage(popupFirst, 'imageChangeFirst', 'book');
+}
+
+function popupToggleSecond() {
+  const popupSecond = document.getElementById('popupIntroTextSecond');
+  const popupContentSecond = document.getElementById('popupContentSecond');
+  popupSecond.classList.toggle('popupHideWrapperSecond');
+  popupContentSecond.classList.toggle('popupHideInnerContentSecond');
+  changeImage(popupSecond, 'imageChangeSecond', 'info');
+}
+
+function changeImage(popup, imageId, iconType) {
+  const imageElement = document.getElementById(imageId);
+  const isHidden = popup.classList.contains('popupHideWrapperFirst') ||
+                  popup.classList.contains('popupHideWrapperSecond');
+
+  if (isHidden) {
+    imageElement.src = "./img/12_icons/close.svg"; 
   } else {
-    imageChange.src = "./img/12_icons/info.svg"; // Pfad zum Bild ändern
+    if (iconType === 'book') {
+      imageElement.src = "./img/12_icons/book.svg"; 
+    } else if (iconType === 'info') {
+      imageElement.src = "./img/12_icons/info.svg"; 
+    }
   }
 }
+
+// Am Anfang die Close-Icons anzeigen
+changeImage(document.getElementById('popupIntroTextFirst'), 'imageChangeFirst', 'book');
+changeImage(document.getElementById('popupIntroTextSecond'), 'imageChangeSecond', 'info');
 
 
 

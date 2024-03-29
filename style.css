@@ -46,7 +46,7 @@ h2 {
     font-family: 'Rye';
     margin-top: 180px;
 }
-.popup-content {
+.popup-content-first {
   position: absolute;
   z-index: 80;
   background: #cacaca;
@@ -60,16 +60,41 @@ h2 {
   width: fit-content;
   bottom: -211px;
   opacity: 0;
-  transition: opacity 0.5s ease, bottom 0.5s ease; /* Transition definieren */
+  transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
+}
+
+.popup-content-second {
+  position: absolute;
+  z-index: 80;
+  background: #cacaca;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  width: 24%;
+  right: 0px;
+  border-radius: 5px;
+  padding: 30px;
+  line-height: 1.5;
+  width: fit-content;
+  bottom: -211px;
+  opacity: 0;
+  transition: opacity 0.9s ease, bottom 0.5s ease; /* Transition definieren */
 }
 
 
-.popupHideWrapper {
+.popupHideWrapperFirst {
   opacity: 1!important;
   bottom: 210px!important;
 }
-.popupHideInnerContent {
-  /* bottom: 0px; */
+
+.popupHideWrapperSecond {
+  opacity: 1!important;
+  bottom: 210px!important;
+}
+
+.popupHideInnerContentFirst {
+  opacity: 1!important;
+}
+.popupHideInnerContentSecond {
   opacity: 1!important;
 }
 
@@ -86,7 +111,6 @@ h2 {
   z-index: 20;
   width: 100%;
 }
-
 
 .btn {    
   cursor: pointer;
@@ -120,11 +144,6 @@ h2 {
   filter: opacity(1);
 }
 
-/* .startscreen-img {
-  display: flex;
-  justify-content: center;
-} */
-
 .startscreen-img img {
   height: 480px;
   width: 720px;
@@ -145,7 +164,7 @@ img.btn-close {
   height: auto;
   position: absolute;
   top: -18px;
-    left: 50%;
+  left: 10%;
   transform: translate(-50%, -50%);
   background: #cacaca;
   width: 40px;
@@ -154,12 +173,29 @@ img.btn-close {
   border-radius: 10px 10px 0px 0px;
 }
 
+img.btn-close-second {
+
+  height: auto;
+  position: absolute;
+  top: -19px;
+  left: 18%;
+  transform: translate(-50%, -50%);
+  background: #cacaca;
+  width: 40px;
+  z-index: 50;
+  cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
+}
+
+img.btn-close-active {
+  background-color: orange;
+}
 .popup-intro-text {
   opacity: 1 !important;
   bottom: 0px;
   position: absolute;
   width: 100%;
-  transition: opacity 0.5s ease, bottom 0.5s ease;
+  transition: opacity 0.9s ease, bottom 0.5s ease;
 }
 
 button {
@@ -207,7 +243,6 @@ h1 {
   justify-content: space-between;
   padding: 10px;
 }
-/* .background {    background-image: url('img/11_bg/bg.jpg');} */
 canvas {
     background-color: black;
     border-radius: 10px;
