@@ -2,12 +2,12 @@ class ThrowableObject extends MovableObject {
   throwBottleAir = false;
   bottleSplash = false;
   isBreaking = false;
-  bottlesplash_sound = new Audio('./audio/bottlesplash.mp3');
-  offset = { 
-    top: 40 ,
-    bottom: 60,
-    left: 40,
-    right: 40
+  bottlesplash_sound = new Audio('./audio/bottlesplash.mp3');  
+  offset = {
+    left: 20,
+    top: 20,
+    right: 20,
+    bottom: 20,
   };
 
   constructor(x, y, direction) {

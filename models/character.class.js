@@ -5,11 +5,11 @@ class Character extends MovableObject {
   timePassed = 0;
   dead_sound = new Audio('./audio/character-death.mp3');
   offset = {
+    left: 20,
     top: 110,
-    bottom: 120,
-    left: 85,
-    right: 80
-  }
+    right: 50,
+    bottom: 10,
+  };
   
   IMAGES_WALKING = [
     'img/2_character_pepe/2_walk/W-21.png',

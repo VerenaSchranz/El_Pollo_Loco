@@ -7,10 +7,10 @@ class CollectableCoin extends MovableObject {
   ];
 
   offset = {
-    top: 50, 
-    bottom: 100, 
-    left: 50, 
-    right: 50, 
+    left: 50,
+    top: 60,
+    right: 50,
+    bottom: 60,
   }; 
 
 
@@ -40,10 +40,10 @@ class CollectableBottle extends MovableObject {
   y = 330;
 
   offset = {
-    top: 15, 
-    bottom: 30, 
-    left: 50, 
-    right: 50, 
+    left: 40,
+    top: 20,
+    right: 40,
+    bottom: 30,
   }; 
 
   IMAGES_BOTTLES = [

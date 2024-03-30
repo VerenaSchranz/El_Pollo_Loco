@@ -5,10 +5,10 @@ class Smallchicken extends MovableObject {
   width = 60;
   isDead = false;
   offset = {
-    top: 60 ,
-    bottom: 100,
-    left: 50,
-    right: 50
+    left: 10,
+    top: 10,
+    right: 10,
+    bottom: 10,
   }
   IMAGES_WALKING = [
       'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
