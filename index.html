@@ -42,6 +42,13 @@
     <script src="js/game.js"></script>
   </head>
   <body>
+    <div class="background-overlay"></div>
+    <div class="overlayMobile">
+    <div class="turnScreenBox" id="turnScreen">
+      <img class="turnScreenIcon" src="./img/12_icons/turn-device.png" alt="">
+      <p>Please rotate your device into landscape mode</p>
+    </div>
+    </div>
     <section class="background">
       <h1>El Pollo Loco</h1>
       <div class="game-container">
@@ -103,10 +110,7 @@
                     <div class="instruction-popup-item"><img src="./img/12_icons/space.png" alt="">Jump</div>
                 </div>
               </div>
-              <div class="turnScreenBox" id="turnScreen">
-                <img class="turnScreenIcon" src="./img/12_icons/turn-device.png" alt="">
-                <p>Turn Device</p>
-              </div>
+     
                 </div>
               </div>
             </div>
@@ -129,6 +133,7 @@
               />
             </div>
           </div>
+          
           <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
         </div>
         
