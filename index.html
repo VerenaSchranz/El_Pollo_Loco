@@ -23,31 +23,20 @@
       sizes="16x16"
       href="img/favicon/favicon-16x16.png"
     />
-    <!-- <link rel="manifest" href="/img/favicon/site.webmanifest"> -->
-    <script src="models/drawable-object.class.js"></script>
-    <script src="models/movable-object.class.js"></script>
-    <script src="models/character.class.js"></script>
-    <script src="models/keyboard.class.js"></script>
-    <script src="models/chicken.class.js"></script>
-    <script src="models/small-chicken.class.js"></script>
-    <script src="models/collectable-object.class.js"></script>
-    <script src="models/status-bar.class.js"></script>
-    <script src="models/cloud.class.js"></script>
-    <script src="models/background-object.class.js"></script>
-    <script src="models/world.class.js"></script>
-    <script src="models/level.class.js"></script>
-    <script src="models/endboss.class.js"></script>
-    <script src="models/throwable-object.class.js"></script>
-    <script src="models/level1.js"></script>
-    <script src="js/game.js"></script>
+
   </head>
   <body>
-    <section class="background">
+ <!--    <div class="overlayMobile">
+    <div class="turnScreenBox" id="turnScreen">
+      <img class="turnScreenIcon" src="./img/12_icons/turn-device.png" alt="">
+      <p>Please rotate your device into landscape mode</p>
+    </div> -->
+    </div>
       <h1>El Pollo Loco</h1>
       <div class="game-container">
         <div class="btn-container">
           <div class="btn-flex">
-            <div id="infoBtn" class="btn" onclick="">
+            <div id="infoBtn" class="btn">
               <a href="imprint.html" target="_blank">
                 <img src="./img/12_icons/link.svg" alt="" />
               </a>
@@ -103,6 +92,7 @@
                     <div class="instruction-popup-item"><img src="./img/12_icons/space.png" alt="">Jump</div>
                 </div>
               </div>
+     
                 </div>
               </div>
             </div>
@@ -125,10 +115,36 @@
               />
             </div>
           </div>
+          
           <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+          <div class="btn-mobile-wrapper">
+            <div class="btn-mobile-flex">
+              <img class="btn-mobile" id="btnLeft" src="./img/12_icons/left.png" alt="">
+              <img class="btn-mobile" id="btnRight" src="./img/12_icons/right.png" alt="">
+            </div>
+            <div class="btn-mobile-flex">
+              <img class="btn-mobile" id="btnJump" src="./img/12_icons/up.png" alt="">
+              <img class="btn-mobile" id="btnThrow" src="./img/12_icons/attack.png" alt="">
+            </div>
+          </div>
         </div>
         
       </div>
-    </section>
   </body>
+  <script src="models/drawable-object.class.js"></script>
+  <script src="models/movable-object.class.js"></script>
+  <script src="models/character.class.js"></script>
+  <script src="models/chicken.class.js"></script>
+  <script src="models/small-chicken.class.js"></script>
+  <script src="models/collectable-object.class.js"></script>
+  <script src="models/status-bar.class.js"></script>
+  <script src="models/cloud.class.js"></script>
+  <script src="models/background-object.class.js"></script>
+  <script src="models/world.class.js"></script>
+  <script src="models/level.class.js"></script>
+  <script src="models/endboss.class.js"></script>
+  <script src="models/throwable-object.class.js"></script>
+  <script src="models/level1.js"></script>
+  <script src="models/keyboard.class.js"></script>
+  <script src="js/game.js"></script>
 </html>
