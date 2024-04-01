@@ -114,7 +114,7 @@ class StatusBarCoin extends DrawableObject {
     this.setPercentageCoin(0);
   }
 
-  //setPercentage(50);
+  
   setPercentageCoin(percentageCoin) {
     this.percentageCoin = percentageCoin; // => 0...5
     let path = this.IMAGES[this.resolveImageIndexCoin()];
@@ -123,7 +123,7 @@ class StatusBarCoin extends DrawableObject {
 
 resolveImageIndexCoin() {
   if(this.percentageCoin == 100) {
-    return 0; 
+    return 5; 
    } else if (this.percentageCoin == 0) {
      return 0; 
    }else if (this.percentageCoin <= 20) {
@@ -135,7 +135,7 @@ resolveImageIndexCoin() {
    } else if (this.percentageCoin <= 80) {
      return 4;
    } else {
-     return 5;
+     return 1;
    }
  }
 }
