@@ -8,17 +8,27 @@ backgroundMusic.loop = true;
 // let backgroundSound = true;
 let backgroundSound = true;
 let mainSound = false;
+let isLoading = false;
 playBackgroundMusic();
 
 
-function init() {
-  startScreenClose();
-  playBackgroundMusic();
-  canvas = document.getElementById('canvas');
+
+
+async function startGame() {
+  startScreenClose()
+  showLoadingScreen();
   initLevel();
+  canvas = document.getElementById('canvas');
+  playBackgroundMusic();
   world = new World(canvas, keyboard);
 }
 
+async function showLoadingScreen() {
+  document.getElementById('loadingScreen').classList.remove('hide');
+  setTimeout(() => {
+    document.getElementById('loadingScreen').classList.add('hide');
+  }, 400);
+}
 
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
