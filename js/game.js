@@ -5,13 +5,10 @@ let intervalIds = [];
 let backgroundMusic = new Audio('./audio/background_music.mp3');
 backgroundMusic.volume = 0.2;
 backgroundMusic.loop = true;
-// let backgroundSound = true;
 let backgroundSound = true;
 let mainSound = false;
 let isLoading = false;
 playBackgroundMusic();
-
-
 
 
 async function startGame() {
@@ -134,13 +131,13 @@ function changeImage(popup, imageId, iconType) {
   const isHidden = popup.classList.contains('popupHideWrapperFirst') || popup.classList.contains('popupHideWrapperSecond');
 
   if (isHidden) {
-    imageElement.src = "./img/12_icons/close.svg"; 
+    imageElement.src = "./img/12_icons/close.svg";
   } else {
     if (iconType === 'info') {
-      imageElement.src = "./img/12_icons/book.svg"; 
+      imageElement.src = "./img/12_icons/book.svg";
     }
     if (iconType === 'book') {
-      imageElement.src = "./img/12_icons/info.svg"; 
+      imageElement.src = "./img/12_icons/info.svg";
     }
   }
 }
@@ -152,7 +149,7 @@ function popupToggle() {
   const imageChange = document.getElementById('imageChange');
   popup.classList.toggle('popupHideWrapper');
   popupContent.classList.toggle('popupHideInnerContent');
-  
+
   if (popup.classList.contains('popupHideWrapper')) {
     imageChange.src = "./img/12_icons/close.svg"; // Pfad zum anderen Bild ändern
   } else {
