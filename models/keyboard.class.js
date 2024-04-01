@@ -8,11 +8,25 @@ class Keyboard {
   R = false;
   dPressedLastInterval = false;
 
+
+  /**
+   * Constructor for initializing key press and button press events.
+   */
   constructor() {
     this.bindKeyPressEvents();
     this.bindBtsPressEvents();
   }
+  
 
+  /**
+   * Binds key press events to update the keyboard state.
+   *
+   * This function adds event listeners to the window object for the 'keydown' and 'keyup' events.
+   * When a key is pressed, the corresponding keyCode is checked and the corresponding property in the
+   * keyboard object is set to true. When a key is released, the corresponding property in the keyboard
+   * object is set to false.
+   *
+   */
   bindKeyPressEvents() {
     window.addEventListener('keydown', (e) => {
       if (e.keyCode == 39) {
@@ -71,6 +85,14 @@ class Keyboard {
     });
   }
 
+
+  /**
+   * Binds event listeners to the touchstart and touchend events of the buttons
+   * btnLeft, btnRight, btnJump, and btnThrow. When a button is touched, the
+   * corresponding boolean property is set to true, and when the button is released,
+   * the corresponding boolean property is set to false.
+   *
+   */
   bindBtsPressEvents() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
       e.preventDefault();

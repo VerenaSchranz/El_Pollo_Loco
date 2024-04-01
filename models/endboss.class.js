@@ -72,6 +72,15 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/2_alert/G12.png',
 
   ];
+
+
+  /**
+   * Initializes the object by loading images, setting initial position,
+   * and starting animation.
+   *
+   * @constructor
+   * @return {void}
+   */
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
@@ -83,6 +92,13 @@ class Endboss extends MovableObject {
     this.moveLeftAngry = false;
     this.animate();
   }
+
+  
+  /**
+   * A function that sets 'inDamage' to true, then after 400ms sets it back to false.
+   *
+   */
+
   hitBottleEndboss(){
     this.inDamage = true;
     setTimeout(() => {
@@ -90,6 +106,14 @@ class Endboss extends MovableObject {
     }, 400);
   }
   
+  
+  /**
+   * Decreases the energy of the endboss by 20 units, sets the endboss to be immune for 200 milliseconds,
+   * and checks if the endboss is dead. If the endboss is not dead, it sets the last hit time to the current time.
+   * After 200 milliseconds, the endboss becomes vulnerable again. Finally, it checks if the endboss is angry.
+   *
+   * @return {void} This function does not return a value.
+   */
   minusEnergyEndboss() {
     if (!this.endbossImmune) {
       this.endbossImmune = true;
@@ -107,6 +131,11 @@ class Endboss extends MovableObject {
     this.checkAngryEndboss();
   }
   
+
+  /**
+   * Checks if the endboss is angry and performs actions accordingly.
+   *
+   */
   checkAngryEndboss() {
     if (this.energyEndboss <= 20) { 
       this.isAlert = true; 
@@ -120,15 +149,22 @@ class Endboss extends MovableObject {
       setTimeout(() => {
         this.isAlert = false;
         this.moveLeftAngry = true;
-       
       }, 1500);
     }
   }
   
   
+  /**
+   * Moves the endboss angry to the left based on its speed.
+   */
   moveLeftEndbossAngry () {
     this.x -= this.speedAngry;
   }
+  
+
+  /**
+   * Checks if the end boss is dead based on energy level.
+   */
   
   isDeadEndboss() {
     if (this.energyEndboss <= 0) {
@@ -136,6 +172,10 @@ class Endboss extends MovableObject {
     }
   }
   
+  
+  /**
+   * Method to animate the character's movements and actions.
+   */
   animate() {
     setInterval(() => {
       if(this.moveLeftAngry) {

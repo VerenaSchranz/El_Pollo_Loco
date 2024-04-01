@@ -4,7 +4,7 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-image: url('img/11_bg/bg.jpg');
+  background-image: url("img/11_bg/bg.jpg");
   background-position: left center;
   height: 100vh;
   background-repeat: no-repeat;
@@ -14,8 +14,8 @@ body {
 }
 
 .spinner {
-  width: 100px; 
-  height: 100px; 
+  width: 100px;
+  height: 100px;
   animation: spin 1s linear infinite;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 .hide {
-  display: none!important;
+  display: none !important;
 }
 /*Loader*/
 .loader-container {
@@ -55,8 +55,12 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .btn-mobile-wrapper {
@@ -78,7 +82,7 @@ body {
 
 .btn-mobile {
   background: orange;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   border: solid;
   padding: 10px;
@@ -95,7 +99,6 @@ body {
 .overlayMobile {
   width: 100vw;
   height: 100vh;
-  /* transform: translate(50%, 50%); */
   position: absolute;
   display: flex;
   z-index: 150;
@@ -104,9 +107,9 @@ body {
   align-items: center;
   text-align: center;
 }
-.turnScreenBox {
 
-  font-family: 'Rye';
+.turnScreenBox {
+  font-family: "Rye";
   font-size: 30px;
 }
 .turnScreenBox img {
@@ -118,9 +121,8 @@ body {
 }
 
 h3 {
-  font-family: 'Rye';
+  font-family: "Rye";
   line-height: 0;
-  
 }
 .game-container {
   position: relative;
@@ -132,31 +134,31 @@ h3 {
   width: 50%;
 }
 .flex-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .startscreen-div {
-    width: 720px;
-    height: 480px;
-    top: 0;
-    z-index: 8;
-    background: #00000087;
-    border-radius: 10px;
+  width: 720px;
+  height: 480px;
+  top: 0;
+  z-index: 8;
+  background: #00000087;
+  border-radius: 10px;
 }
 
 h2 {
   position: absolute;
-    z-index: 6;
-    color: orange;
-    font-size: 115px;
-    font-family: 'Rye';
-    margin-top: 180px;
+  z-index: 6;
+  color: orange;
+  font-size: 115px;
+  font-family: "Rye";
+  margin-top: 180px;
 }
 .popup-content-first {
   position: absolute;
   z-index: 80;
   background: #cacaca;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   width: 24%;
   transform: translateX(-6%);
@@ -174,11 +176,11 @@ h2 {
   position: absolute;
   z-index: 100;
   background: #cacaca;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   width: 24%;
   transform: translateX(-7%);
-    right: 0px;
+  right: 0px;
   border-radius: 5px 11px 0 0;
   padding: 16px 30px;
   line-height: 1.5;
@@ -188,28 +190,27 @@ h2 {
   transition: opacity 0.9s ease, bottom 0.5s ease;
 }
 
-
 .popupHideWrapperFirst {
-  opacity: 1!important;
-  bottom: 210px!important;
+  opacity: 1 !important;
+  bottom: 210px !important;
 }
 
 .popupHideWrapperSecond {
-  opacity: 1!important;
-  bottom: 193px!important; /* höhe verstellbar */
+  opacity: 1 !important;
+  bottom: 193px !important; /* höhe verstellbar */
 }
 
 .popupHideInnerContentFirst {
-  opacity: 1!important;
+  opacity: 1 !important;
 }
 .popupHideInnerContentSecond {
-  opacity: 1!important;
+  opacity: 1 !important;
 }
 
 .btn-flex {
-    display: flex;
-    gap: 12px;
-    margin: 10px 20px;
+  display: flex;
+  gap: 12px;
+  margin: 10px 20px;
 }
 
 .btn-container {
@@ -220,24 +221,22 @@ h2 {
   width: 100%;
 }
 
-
-.btn {    
+.btn {
   cursor: pointer;
   background: orange;
   border-radius: 5px;
   width: 45px;
   align-items: center;
   text-align: center;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
   background: rgb(255, 111, 0);
-  transform: scale(1.04); 
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
-  transform: scale(1.04); 
+  transform: scale(1.04);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.04);
 }
-
 
 .btn-container-restart {
   display: flex;
@@ -249,7 +248,6 @@ h2 {
   width: 40px;
   height: auto;
   filter: opacity(0.6);
-
 }
 .btn img:hover {
   filter: opacity(1);
@@ -272,7 +270,7 @@ h2 {
 }
 .imprint-div {
   background: #cacaca;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   width: 70%;
   margin: auto;
   border-radius: 10px;
@@ -293,7 +291,6 @@ img.btn-close {
 }
 
 img.btn-close-second {
-
   height: auto;
   position: absolute;
   top: -19px;
@@ -325,35 +322,35 @@ button {
   border-radius: 5px;
   background: orange;
   font-size: 25px;
-  font-family: 'Rye';
+  font-family: "Rye";
   margin-top: 52px;
   cursor: pointer;
   transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
   background: rgb(255, 111, 0);
-  transform: scale(1.04); 
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
+  transform: scale(1.04);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 @font-face {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   src: url(../fonts/Inter-Medium.ttf);
 }
 
 @font-face {
-  font-family: 'Rye';
-  src: url("../fonts/Rye-Regular.ttf") format("truetype"); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  font-family: "Rye";
+  src: url("../fonts/Rye-Regular.ttf") format("truetype");
 }
 
 h1 {
   color: #f2f2f2;
   font-size: 50px;
   text-align: center;
-  font-family: 'Rye', sans-serif;}
-
+  font-family: "Rye", sans-serif;
+}
 
 .instruction-popup {
   width: 100%;
@@ -361,7 +358,7 @@ h1 {
   gap: 50px;
 }
 
-.instruction-popup-item  {
+.instruction-popup-item {
   display: flex;
   justify-content: normal;
   margin-top: 20px;
@@ -385,12 +382,11 @@ canvas {
 }
 
 @media (min-width: 721px) and (min-height: 481px) {
-  /* Verstecke das Bild, wenn Bildschirm größer als 720x480 */
   .overlayMobile {
     display: none;
   }
-  
 }
+
 @media (max-width: 720px) {
   h1 {
     display: none;
@@ -400,18 +396,16 @@ canvas {
   }
 }
 @media only screen and (max-height: 600px) {
-/*   .overlayMobile {
-    display: flex;
-  } */
-   .flex-container , canvas { 
+  .flex-container,
+  canvas {
     width: 100%;
   }
- 
 }
 
 @media only screen and (max-height: 480px) {
- 
-  .game-container, .flex-container, canvas { 
+  .game-container,
+  .flex-container,
+  canvas {
     width: 100vw;
   }
 }
