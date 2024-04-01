@@ -69,7 +69,7 @@ function restartGame() {
   document.getElementById("canvas").classList.remove('d-none');
   document.getElementById("mute").classList.remove('d-none');
   startScreenClose();
-  init();
+  startGame();
 }
 
 function stopGame() {

@@ -16,7 +16,7 @@ body {
 .spinner {
   width: 100px; 
   height: 100px; 
-  animation: spin 1s linear infinite;‚
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -238,9 +238,11 @@ h2 {
   transform: scale(1.04); 
 }
 
+
 .btn-container-restart {
   display: flex;
   justify-content: space-around;
+  width: 720px;
 }
 
 .btn img {

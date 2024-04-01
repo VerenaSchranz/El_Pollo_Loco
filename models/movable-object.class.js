@@ -1,4 +1,5 @@
 class MovableObject extends DrawableObject {
+  speedAngry = 0.15;
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -86,7 +87,6 @@ class MovableObject extends DrawableObject {
   
   isDead() {
     return this.energy == 0;
-    console.log("character tot");
   }
 
   isHurt() {
@@ -110,9 +110,9 @@ class MovableObject extends DrawableObject {
   moveLeft() {
     this.x -= this.speed;
   }
+
   jump() {
     if (!mainSound) {
-      console.log(mainSound)
       this.jump_sound.cloneNode(true).play();
     }
     this.speedY = 30;
