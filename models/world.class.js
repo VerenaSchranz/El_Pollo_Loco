@@ -46,7 +46,6 @@ class World {
     }, 300);
     setInterval(() => {
       this.checkEndbossGetHit()
-      this.checkAngryEndbossStart();
     }, 200);
     setInterval(() => {
       this.checkCollisions();
@@ -187,17 +186,6 @@ class World {
       });
     });
   }
-
-  checkAngryEndbossStart() {
-    if (this.character.x === 1800) { 
-      this.playAnimation(this.IMAGES_ALERT);
-      setTimeout(() => {
-        this.inAlert = true; 
-      }, 1000);
-    }
-  }
-  
-  
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
