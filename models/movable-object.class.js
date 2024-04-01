@@ -1,4 +1,5 @@
 class MovableObject extends DrawableObject {
+  speedAngry = 0.15;
   speed = 0.15;
   otherDirection = false;
   speedY = 0;
@@ -110,13 +111,6 @@ class MovableObject extends DrawableObject {
     this.x -= this.speed;
   }
 
-/*   chickenJump() {
-    this.speedY = 10; 
-    if (this.y <= 150) {
-      this.y = 150; 
-    }
-  }
- */
   jump() {
     if (!mainSound) {
       this.jump_sound.cloneNode(true).play();

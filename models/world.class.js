@@ -20,6 +20,7 @@ class World {
   addedBottles = [];
   throwableObjects = [];
   bottleSplash = false;
+  alert_sound = new Audio('./audio/alert.mp3');
   dead_sound = new Audio('./audio/chickenDead.mp3');
   collectcoin_sound = new Audio('./audio/collectcoin.mp3');
   collectbottle_sound = new Audio('./audio/collectbottle.mp3');
@@ -45,6 +46,7 @@ class World {
     }, 300);
     setInterval(() => {
       this.checkEndbossGetHit()
+      this.checkAngryEndbossStart();
     }, 200);
     setInterval(() => {
       this.checkCollisions();
@@ -185,6 +187,17 @@ class World {
       });
     });
   }
+
+  checkAngryEndbossStart() {
+    if (this.character.x === 1800) { 
+      this.playAnimation(this.IMAGES_ALERT);
+      setTimeout(() => {
+        this.inAlert = true; 
+      }, 1000);
+    }
+  }
+  
+  
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
