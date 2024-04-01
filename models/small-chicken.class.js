@@ -1,6 +1,6 @@
 class Smallchicken extends MovableObject {
   speed = 5;
-  speedY = 5; // Geschwindigkeit in vertikaler Richtung für das Hüpfen
+  speedY = 4; 
   y = 360;
   height = 60;
   width = 60;
@@ -37,12 +37,12 @@ class Smallchicken extends MovableObject {
   
   chickenJump() {
     if (this.y <= 250) {
-      this.speedY = Math.abs(this.speedY); // Richtung umkehren, wenn oberer Rand erreicht
+      this.speedY = Math.abs(this.speedY);
     }
     if (this.y >= 360) {
-      this.speedY = -Math.abs(this.speedY); // Richtung umkehren, wenn unterer Rand erreicht
+      this.speedY = -Math.abs(this.speedY);
     }
-    this.y += this.speedY; // Y-Position entsprechend der Geschwindigkeit ändern
+    this.y += this.speedY;
   }
 
   animate() {

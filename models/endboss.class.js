@@ -11,7 +11,7 @@ class Endboss extends MovableObject {
   endbossdead_sound = new Audio('./audio/endbossdead.mp3');
   offset = {
     top: 150,
-    bottom: 210,
+    bottom: 100,
     left: 45,
     right: 0
   }
