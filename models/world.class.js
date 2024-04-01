@@ -27,6 +27,12 @@ class World {
 
 
 
+  /**
+   * Initializes a new instance of the class.
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas element to draw on.
+   * @param {Keyboard} keyboard - The keyboard object for input handling.
+   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext('2d');
     this.canvas = canvas;
@@ -36,10 +42,19 @@ class World {
     this.run();
   }
 
+  /**
+   * Set the world for the character.
+   */
   setWorld() {
     this.character.world = this;
   }
 
+  /**
+   * Runs multiple setInterval functions to check for various game conditions periodically.
+   *
+   * @param None
+   * @return None
+   */
   run() {
     setInterval(() => {
       this.checkThrowObjects();
@@ -53,8 +68,13 @@ class World {
       this.checkCollisionThrowableWithChicken();
     }, 25);
   }
-  checkThrowObjects() { 
-     if (this.character.energyBottle > 0) {
+
+
+  /**
+   * Checks if there is an energy bottle available and if the "D" key is pressed to throw objects.
+   */
+  checkThrowObjects() {
+    if (this.character.energyBottle > 0) {
       if (this.keyboard.D) {
         this.character.setNewTimePassed();
         let bottle = new ThrowableObject(this.character.x + 0, this.character.y + 100, this.character.otherDirection);
@@ -62,96 +82,177 @@ class World {
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
       }
-    } 
+    }
   }
 
+  /**
+   * Check for collisions between the character and enemies, endboss, collectable coins, and collectable bottles
+   *
+   */
   checkCollisions() {
+    this.checkEnemyCollisions();
+    this.checkEndbossCollision();
+    this.checkCoinCollisions();
+    this.checkBottleCollisions();
+  }
+
+  /**
+   * Checks for collisions with enemies and handles the character's actions accordingly.
+   */
+  checkEnemyCollisions() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy, index)) {
-
         if (this.character.isAboveGround() && this.character.speedY <= 0) {
           this.character.jumpOnEnemy();
-          if (!enemy.isDead) {
-            enemy.isDead = true;
-            if (!mainSound) {
-              this.dead_sound.cloneNode(true).play();
-            }
-            this.character.immune = true;
-            setTimeout(() => {
-              this.level.enemies.splice(index, 1);
-              this.character.immune = false;
-            }, 250);
-          }
-        }
-        else {
+          this.handleJumpEnemyCollision(enemy, index);
+        } else {
           this.character.hit();
           this.statusBar.setPercentage(this.character.energy);
         }
       }
     });
+  }
 
+  /**
+   * Handles collision between character and enemy.
+   *
+   * @param {Object} enemy - the enemy object
+   * @param {number} index - the index of the enemy in the array
+   * @return {void} 
+   */
+  handleJumpEnemyCollision(enemy, index) {
+    if (!enemy.isDead) {
+      this.character.immune = true;
+      this.dead_sound.cloneNode(true).play();
+      setTimeout(() => {
+        this.level.enemies.splice(index, 1);
+        this.character.immune = false;
+      }, 250);
+      enemy.isDead = true;
+    }
+  }
+
+  /**
+   * Check for collision with the end boss and handle character hit accordingly.
+   */
+  checkEndbossCollision() {
     this.level.endboss.forEach((endboss) => {
       if (this.character.isColliding(endboss)) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.energy);
       }
     });
+  }
 
+  /**
+   * Checks for coin collisions and collects the coins if a collision is detected.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
+  checkCoinCollisions() {
     this.level.collectableCoins.forEach((coins, index) => {
       if (this.character.isColliding(coins)) {
-        this.character.addEnergyCoin();
-        this.addedCoins.push({ coin: coins, index: index });
-        if (!mainSound) {
-          this.collectcoin_sound.cloneNode(true).play();
-        }
-        this.level.collectableCoins.splice(index, 1);
-        this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
-        console.log(world.statusBarCoin.percentageCoin);
-
+        this.collectCoin(coins, index);
       }
     });
-    this.level.collectableBottles.forEach((bottle, index) => {
-      if (this.character.isColliding(bottle)) {
-        if (this.character.energyBottle < 100) {
-          this.character.addEnergyBottle();
-          this.addedBottles.push({ bottle: bottle, index: index });
-          if (!mainSound) {
-            this.collectbottle_sound.cloneNode(true).play();
-          }
-          this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-          this.level.collectableBottles.splice(index, 1);
-
-        }
-      }
-    });
-
   }
 
+  /**
+   * Collects a coin and updates the player's energy and the game state.
+   *
+   * @param {Array} coins - The array of coins in the game.
+   * @param {number} index - The index of the coin to be collected.
+   * @return {void} This function does not return a value.
+   */
+  collectCoin(coins, index) {
+    this.character.addEnergyCoin();
+    this.addedCoins.push({ coin: coins, index: index });
+    this.collectcoin_sound.cloneNode(true).play();
+    this.level.collectableCoins.splice(index, 1);
+    this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
+  }
+
+  /**
+   * Checks for collisions between the character and collectable bottles, and collects the bottle if the character is colliding and has less than 100 energy.
+   *
+   * @return {void} This function does not return a value.
+   */
+  checkBottleCollisions() {
+    this.level.collectableBottles.forEach((bottle, index) => {
+      if (this.character.isColliding(bottle) && this.character.energyBottle < 100) {
+        this.collectBottle(bottle, index);
+      }
+    });
+  }
+
+  /**
+   * Collects a bottle and updates the game state accordingly.
+   *
+   * @param {Object} bottle - The bottle object to be collected.
+   * @param {number} index - The index of the bottle in the collectableBottles array.
+   */
+  collectBottle(bottle, index) {
+    this.character.addEnergyBottle();
+    this.addedBottles.push({ bottle: bottle, index: index });
+    this.collectbottle_sound.cloneNode(true).play();
+    this.level.collectableBottles.splice(index, 1);
+    this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
+  }
+
+
+  /**
+   * Checks if any throwable objects are colliding with the endboss and performs the corresponding actions.
+   *
+   * @param {type} throwableObject - the throwable object to check for collision
+   * @param {type} throwableIndex - the index of the throwable object in the array
+   * @return {type} undefined
+   */
   checkEndbossGetHit() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
-
-      if (this.level.endboss) {
-        this.level.endboss.forEach((endboss, endbossIndex) => {
-          if (throwableObject.isColliding(endboss)) {
-            endboss.hitBottleEndboss();
-            endboss.minusEnergyEndboss();
-            this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
-            throwableObject.breakAndSplash();
-            setTimeout(() => {
-              this.throwableObjects.splice(throwableIndex, 1);
-            }, 100);
-            if (endboss.isDead) {
-              setTimeout(() => {
-                this.level.endboss.splice(endbossIndex, 1);
-              }, 500);
-            }
-          }
-        });
-      }
+      this.level.endboss.forEach((endboss, endbossIndex) => {
+        if (throwableObject.isColliding(endboss)) {
+          this.handleEndbossCollision(throwableObject, endboss, throwableIndex, endbossIndex);
+        }
+      });
     });
   }
 
 
+  /**
+   * Handles the collision between a throwable object and the endboss.
+   *
+   * @param {Object} throwableObject - the throwable object involved in the collision
+   * @param {Object} endboss - the endboss involved in the collision
+   * @param {number} throwableIndex - the index of the throwable object in the array
+   * @param {number} endbossIndex - the index of the endboss in the array
+   * @return {void} 
+   */
+  handleEndbossCollision(throwableObject, endboss, throwableIndex, endbossIndex) {
+    endboss.hitBottleEndboss();
+    endboss.minusEnergyEndboss();
+    this.statusBarEndboss.setPercentageEndboss(this.level.endboss[0].energyEndboss);
+    throwableObject.breakAndSplash();
+    setTimeout(() => {
+      this.throwableObjects.splice(throwableIndex, 1);
+    }, 100);
+    if (endboss.isDead) {
+      setTimeout(() => {
+        this.level.endboss.splice(endbossIndex, 1);
+      }, 500);
+    }
+  }
+
+
+  /**
+   * Checks for collisions between throwable objects and the ground.
+   *
+   * This function iterates over each throwable object in the `throwableObjects` array
+   * and checks if its speed in the vertical direction is less than -38. If it is,
+   * the object is broken and splashed, and it is removed from the array after a delay of 300 milliseconds.
+   *
+   * @return {void} This function does not return a value.
+   */
   checkCollisionsWithGround() {
     this.throwableObjects.forEach((throwableObject, index) => {
 
@@ -164,6 +265,11 @@ class World {
     });
   }
 
+
+  /**
+   * Check for collisions between throwable objects and chickens,
+   * handle enemy deaths and remove objects accordingly.
+   */
   checkCollisionThrowableWithChicken() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
       this.level.enemies.forEach((enemy, enemyIndex) => {
@@ -187,19 +293,21 @@ class World {
     });
   }
 
+  /**
+   * Function to draw the game elements on the canvas.
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
 
-    this.ctx.translate(-this.camera_x, 0); //Back
-    // ----- Space for fixed objects ----- //
+    this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusBar);
     this.addToMap(this.statusBarEndboss);
     this.addToMap(this.statusBarBottle);
     this.addToMap(this.statusBarCoin);
-    this.ctx.translate(this.camera_x, 0); //Forwards
+    this.ctx.translate(this.camera_x, 0);
 
     this.addToMap(this.character);
     this.addObjectsToMap(this.level.clouds);
@@ -211,7 +319,6 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0);
 
-    // Draw() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -219,11 +326,25 @@ class World {
   }
 
 
+  /**
+   * Adds an array of objects to the map.
+   *
+   * @param {Array} objects - The array of objects to be added to the map.
+   * @return {void} This function does not return a value.
+   */
   addObjectsToMap(objects) {
     objects.forEach(o => {
       this.addToMap(o);
     });
   }
+
+
+  /**
+   * Adds the given object to the map.
+   *
+   * @param {Object} mo - The object to be added to the map.
+   * @return {void} This function does not return a value.
+   */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -236,6 +357,12 @@ class World {
     }
   }
 
+
+  /**
+   * Flips the image horizontally.
+   *
+   * @param {object} mo - Image object to be flipped
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -243,6 +370,13 @@ class World {
     mo.x = mo.x * -1;
   }
 
+
+  /**
+   * Flips the image back and restores the canvas context.
+   *
+   * @param {Object} mo - The object containing the x coordinate of the image.
+   * @return {undefined} This function does not return a value.
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
