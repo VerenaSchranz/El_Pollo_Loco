@@ -8,11 +8,18 @@ class Keyboard {
   R = false;
   dPressedLastInterval = false;
 
+  /**
+   * A constructor method that binds key press and button press events.
+   */
   constructor() {
     this.bindKeyPressEvents();
     this.bindBtsPressEvents();
   }
 
+  /**
+   * Binds key press events to set keyboard properties accordingly.
+   *
+   */
   bindKeyPressEvents() {
     window.addEventListener('keydown', (e) => {
       if (e.keyCode == 39) {
@@ -71,6 +78,9 @@ class Keyboard {
     });
   }
 
+  /**
+   * Binds touch events to corresponding buttons for left, right, jump, and throw actions.
+   */
   bindBtsPressEvents() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
       e.preventDefault();
@@ -111,6 +121,6 @@ class Keyboard {
       e.preventDefault();
       this.D = false;
     });
-  
+
   }
 }
