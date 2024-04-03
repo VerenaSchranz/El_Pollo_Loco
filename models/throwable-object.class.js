@@ -10,6 +10,15 @@ class ThrowableObject extends MovableObject {
     bottom: 20,
   };
 
+  
+  /**
+   * Constructor for creating a new instance of SalsaBottle.
+   *
+   * @param {type} x - x coordinate
+   * @param {type} y - y coordinate
+   * @param {type} direction - direction of the bottle
+   * @return {type} undefined
+   */
   constructor(x, y, direction) {
     super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
     this.loadImages(this.IMAGES_ROTATE);
@@ -45,6 +54,13 @@ class ThrowableObject extends MovableObject {
     'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
   ];
 
+  
+  /**
+   * This function initiates the throwing action. It sets the necessary variables and applies gravity.
+   *
+   * @param {} - No parameters
+   * @return {} - No return value
+   */
   throw() {
     this.throwBottleAir = true;
     this.speedY = 30;
@@ -59,7 +75,11 @@ class ThrowableObject extends MovableObject {
       }, 25);
     }
   }
+  
 
+  /**
+   * Function to break and splash the bottle
+   */
   breakAndSplash() {
     if (!this.isBreaking) {
       this.throwBottleAir = false;
@@ -68,13 +88,20 @@ class ThrowableObject extends MovableObject {
         this.bottlesplash_sound.cloneNode(true).play();
       }
       this.playAnimation(this.IMAGES_BOTTLE_SPLASH, () => {
-        this.fadeOut(); // Fading out the object after splash animation
+        this.fadeOut();
       });
       this.speedY = 0;
       this.speedX = 0;
     }
   }
 
+
+  /**
+   * A description of the entire function.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   animate() {
     setInterval(() => {
       if (this.throwBottleAir) {
