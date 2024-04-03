@@ -128,7 +128,7 @@ class World {
     const enemyIndex = this.level.enemies.indexOf(enemy);
     if (enemyIndex !== -1 && !enemy.isDead) {
       this.character.immune = true;
-      if (!mute) {
+      if (!mainSound) {
         this.dead_sound.cloneNode(true).play();
       }
       setTimeout(() => {
@@ -178,7 +178,7 @@ class World {
   collectCoin(coins, index) {
     this.character.addEnergyCoin();
     this.addedCoins.push({ coin: coins, index: index });
-    if (!mute) {
+    if (!mainSound) {
       this.collectcoin_sound.cloneNode(true).play();
     }
     this.level.collectableCoins.splice(index, 1);
@@ -209,7 +209,7 @@ class World {
   collectBottle(bottle, index) {
     this.character.addEnergyBottle();
     this.addedBottles.push({ bottle: bottle, index: index });
-    if (!mute) {
+    if (!mainSound) {
       this.collectbottle_sound.cloneNode(true).play();
     }
     this.level.collectableBottles.splice(index, 1);
@@ -293,7 +293,7 @@ class World {
           if (!enemy.isDead) {
             enemy.isDead = true;
             setTimeout(() => {
-              if (!mute) {
+              if (!mainSound) {
                 this.dead_sound.play();
               }
               this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
