@@ -29,7 +29,7 @@ class CollectableCoin extends MovableObject {
    * Randomizes the position of the object within a specified range.
    */
   randomizePosition() {
-    this.x = 500 + Math.random() * 1800;
+    this.x = 500 + Math.random() * 1500;
     this.y = 125 + Math.random() * 200;
   }
 
@@ -80,7 +80,7 @@ class CollectableBottle extends MovableObject {
    * Randomizes the position of the object.
    */
   randomizePosition() {
-    this.x = 200 + Math.random() * 1800;
+    this.x = 200 + Math.random() * 1500;
   }
 
   /**
