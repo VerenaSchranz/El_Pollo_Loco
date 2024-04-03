@@ -1,5 +1,5 @@
 class Endboss extends MovableObject {
-  speedAngry = 1;
+  speedAngry = 2;
   speed = 0.15;
   isDead = false;
   inDamage = false;
