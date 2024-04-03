@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
   aggressive = false;
   endbossImmune = false;
   energyEndboss = 100;
+  otherDirection = false;
   height = 400;
   width = 280;
   y = 60;
@@ -17,7 +18,7 @@ class Endboss extends MovableObject {
     top: 150,
     bottom: 100,
     left: 45,
-    right: 0
+    right: 30
   }
 
   IMAGES_WALKING = [
@@ -92,7 +93,11 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
-  
+
+
+
+
+
   /**
    * Executes the hitBottleEndboss function, which sets inDamage to true and then sets it to false after 400 milliseconds.
    */
@@ -157,6 +162,15 @@ class Endboss extends MovableObject {
     this.x -= this.speedAngry;
   }
 
+
+/**
+ * move the endboss angry to the right
+ */
+moveRightAngry() {
+  this.x += this.speedAngry;
+}
+
+
   /**
    * Checks if the Endboss is dead based on the energy level.
    */
@@ -182,12 +196,22 @@ class Endboss extends MovableObject {
   setupMovementInterval() {
     setInterval(() => {
       if (this.moveLeftAngry) {
-        this.moveLeftEndbossAngry();
+        if (this.otherDirection) {
+          this.moveRightAngry();
+        } else {
+          this.moveLeftEndbossAngry();
+        }
       } else {
-        this.moveLeft();
+        if (this.otherDirection) {
+          this.moveRight();
+        } else {
+          this.moveLeft();
+        }
       }
     }, 1000 / 60);
   }
+  
+  
   
   
   /**

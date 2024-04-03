@@ -63,6 +63,7 @@ class World {
     }, 300);
     setInterval(() => {
       this.checkEndbossGetHit()
+      this.checkCharacterPositionEndboss();
     }, 200);
     setInterval(() => {
       this.checkCollisions();
@@ -395,4 +396,15 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+  checkCharacterPositionEndboss() {
+    const endboss = this.level.endboss[0];
+    if (this.character.x > endboss.x + 200) {
+      endboss.otherDirection = true;
+      endboss.moveLeft();
+    } else if (this.character.x < endboss.x + 200) {
+      endboss.otherDirection = false;
+      endboss.moveRight();
+    }
+  }
+  
 }
