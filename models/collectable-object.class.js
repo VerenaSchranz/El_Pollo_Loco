@@ -17,7 +17,7 @@ class CollectableCoin extends MovableObject {
   /**
    * Constructor function that loads an image, loads multiple images, animates, and randomizes position.
    */
-  constructor() {
+    constructor() {
     super().loadImage(this.IMAGES_COINS[0]);
     this.loadImages(this.IMAGES_COINS);
     this.animate();

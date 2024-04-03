@@ -116,6 +116,7 @@ class Endboss extends MovableObject {
     if (!this.endbossImmune) {
       this.endbossImmune = true;
       this.energyEndboss -= 20;
+      this.speed += 0.3; // Geschwindigkeit um 0.1 erhöhen
       if (this.energyEndboss < 0) {
         this.energyEndboss = 0;
         this.isDeadEndboss();
@@ -128,6 +129,7 @@ class Endboss extends MovableObject {
     }
     this.checkAngryEndboss();
   }
+  
 
   
   /**
@@ -138,7 +140,6 @@ class Endboss extends MovableObject {
   checkAngryEndboss() {
     if (this.energyEndboss <= 20) {
       this.isAlert = true;
-      this.speed = 0
       this.moveLeftAngry = false;
       setTimeout(() => {
         if (!mainSound) {
@@ -154,19 +155,19 @@ class Endboss extends MovableObject {
   }
 
 
-  /**
-   * move the endboss angry to the left
-   *
-   */
-  moveLeftEndbossAngry() {
-    this.x -= this.speedAngry;
-  }
+/**
+ * move the endboss angry to the left
+ *
+ */
+moveLeftEndbossAngry() {
+  this.x -= this.speedAngry;
+}
 
 
 /**
  * move the endboss angry to the right
  */
-moveRightAngry() {
+moveRightEndbossAngry() {
   this.x += this.speedAngry;
 }
 
@@ -190,29 +191,32 @@ moveRightAngry() {
   }
   
 
+
   /**
-   * Set up an interval for movement actions based on conditions.
-   */
-  setupMovementInterval() {
-    setInterval(() => {
-      if (this.moveLeftAngry) {
-        if (this.otherDirection) {
-          this.moveRightAngry();
-        } else {
-          this.moveLeftEndbossAngry();
-        }
+ * Set up an interval for movement actions based on conditions.
+ */
+setupMovementInterval() {
+  setInterval(() => {
+    if (this.isAlert) {
+      this.speed = 0;
+      return;
+    }
+    if (this.moveLeftAngry) {
+      if (this.otherDirection) {
+        this.moveRightEndbossAngry();
       } else {
-        if (this.otherDirection) {
-          this.moveRight();
-        } else {
-          this.moveLeft();
-        }
+        this.moveLeftEndbossAngry();
       }
-    }, 1000 / 60);
-  }
-  
-  
-  
+    } else {
+      if (this.otherDirection) {
+        this.moveRight();
+      } else {
+        this.moveLeft();
+      }
+    }
+  }, 1000 / 60);
+}
+
   
   /**
    * Set up and start an interval to update the character state periodically.
