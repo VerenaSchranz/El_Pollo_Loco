@@ -95,7 +95,6 @@ body {
 .overlayMobile {
   width: 100vw;
   height: 100vh;
-  /* transform: translate(50%, 50%); */
   position: absolute;
   display: flex;
   z-index: 150;
@@ -104,6 +103,7 @@ body {
   align-items: center;
   text-align: center;
 }
+
 .turnScreenBox {
 
   font-family: 'Rye';
@@ -385,12 +385,11 @@ canvas {
 }
 
 @media (min-width: 721px) and (min-height: 481px) {
-  /* Verstecke das Bild, wenn Bildschirm größer als 720x480 */
   .overlayMobile {
     display: none;
   }
-  
 }
+
 @media (max-width: 720px) {
   h1 {
     display: none;
@@ -400,9 +399,7 @@ canvas {
   }
 }
 @media only screen and (max-height: 600px) {
-/*   .overlayMobile {
-    display: flex;
-  } */
+
    .flex-container , canvas { 
     width: 100%;
   }

@@ -17,26 +17,6 @@ draw(ctx) {
 ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 }
 
-/* drawFrame(ctx) {
-  if (this instanceof Character ||
-      this instanceof Chicken || 
-      this instanceof CollectableCoin || 
-      this instanceof CollectableBottle || 
-      this instanceof Endboss || 
-      this instanceof ThrowableObject || 
-      this instanceof Smallchicken) {
-    ctx.beginPath();
-    ctx.lineWidth = '5';
-    ctx.strokeStyle = 'deeppink';
-    ctx.rect(   
-      this.x + this.offset.left,
-      this.y + this.offset.top,
-      this.width - this.offset.right - this.offset.left,
-      this.height - this.offset.bottom);
-    ctx.stroke(); // Rahmen zeichnen
-  }
-}
- */
 
 drawFrame(ctx) {
   if (
@@ -49,8 +29,8 @@ drawFrame(ctx) {
     this instanceof Smallchicken
   ) {
     ctx.beginPath();
-    ctx.lineWidth = "5";
-    ctx.strokeStyle = "deeppink";
+    ctx.lineWidth = "0";
+    ctx.strokeStyle = "transparent";
     ctx.rect(
       this.x + this.offset.left,
       this.y + this.offset.top,
