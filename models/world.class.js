@@ -124,14 +124,15 @@ class World {
    * @param {number} index - the index of the enemy in the array
    * @return {void} 
    */
-  handleJumpEnemyCollision(enemy, index) {
-    if (!enemy.isDead) {
+  handleJumpEnemyCollision(enemy) {
+    const enemyIndex = this.level.enemies.indexOf(enemy);
+    if (enemyIndex !== -1 && !enemy.isDead) {
       this.character.immune = true;
       if (!mute) {
         this.dead_sound.cloneNode(true).play();
       }
       setTimeout(() => {
-        this.level.enemies.splice(index, 1);
+        this.level.enemies.splice(enemyIndex, 1);
         this.character.immune = false;
       }, 250);
       enemy.isDead = true;
