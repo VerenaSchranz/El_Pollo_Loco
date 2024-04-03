@@ -1,5 +1,8 @@
 let level1;
 
+/**
+ * Initializes the level with various game elements such as chickens, small chickens, end boss, clouds, background objects, collectable coins, and collectable bottles.
+ */
 function initLevel() {
   level1 = new Level(
     [
