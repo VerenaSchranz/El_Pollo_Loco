@@ -81,7 +81,7 @@ class World {
         this.throwableObjects.push(bottle);
         this.character.minusEnergyBottle();
         this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
-      }
+      } 
     }
   }
 
@@ -281,22 +281,18 @@ class World {
    */
   checkCollisionThrowableWithChicken() {
     this.throwableObjects.forEach((throwableObject, throwableIndex) => {
-      this.level.enemies.forEach((enemy, enemyIndex) => {
+      this.level.enemies.forEach((enemy) => {
         if (throwableObject.isColliding(enemy)) {
-
           if (!enemy.isDead) {
             enemy.isDead = true;
             setTimeout(() => {
+              
               this.dead_sound.play();
-              this.level.enemies.splice(enemyIndex, 1);
-            }, 250);
+              this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+            }, 300);
           }
-
           throwableObject.breakAndSplash();
-          setTimeout(() => {
-            this.throwableObjects.splice(throwableIndex, 1);
-          }, 100);
-
+          this.throwableObjects.splice(throwableIndex, 1);
         }
       });
     });
