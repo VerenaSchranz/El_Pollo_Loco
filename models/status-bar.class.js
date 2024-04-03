@@ -1,5 +1,5 @@
 class StatusBar extends DrawableObject {
-  
+
   IMAGES = [
     'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
     'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png',
@@ -11,6 +11,9 @@ class StatusBar extends DrawableObject {
   percentage = 100;
 
 
+  /**
+   * Constructor for initializing the object.
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
@@ -21,16 +24,29 @@ class StatusBar extends DrawableObject {
     this.setPercentage(100);
   }
 
-  //setPercentage(50);
+  
+  /**
+   * Set the percentage and update the image accordingly.
+   *
+   * @param {number} percentage - The percentage value to set
+   * @return {void} 
+   */
   setPercentage(percentage) {
-    this.percentage = percentage; // => 0...5
+    this.percentage = percentage;
     let path = this.IMAGES[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
 
-resolveImageIndex() {
-   if(this.percentage == 100) {
-     return 5; 
+  
+  /**
+   * A description of the entire function.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
+  resolveImageIndex() {
+    if (this.percentage == 100) {
+      return 5;
     } else if (this.percentage > 80) {
       return 4;
     } else if (this.percentage > 60) {
@@ -46,7 +62,7 @@ resolveImageIndex() {
 }
 
 class StatusBarBottle extends DrawableObject {
-  
+
   IMAGES = [
     'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
     'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/20.png',
@@ -58,6 +74,10 @@ class StatusBarBottle extends DrawableObject {
   ]
   percentageBottle = 0;
 
+
+  /**
+   * Constructor for initializing the object.
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
@@ -68,16 +88,28 @@ class StatusBarBottle extends DrawableObject {
     this.setPercentageBottle(0);
   }
 
-  //setPercentage(50);
+
+  /**
+   * Set the percentage of the bottle and update the image accordingly.
+   *
+   * @param {number} percentageBottle - The percentage value to set (between 0 and 5).
+   * @return {void} 
+   */
   setPercentageBottle(percentageBottle) {
-    this.percentageBottle = percentageBottle; // => 0...5
+    this.percentageBottle = percentageBottle;
     let path = this.IMAGES[this.resolveImageIndexBottle()];
     this.img = this.imageCache[path];
   }
 
-resolveImageIndexBottle() {
-   if(this.percentageBottle == 0) {
-     return 0; 
+
+  /**
+   * Resolve the image index based on the percentage of the bottle.
+   *
+   * @return {number} The index of the image corresponding to the percentage of the bottle.
+   */
+  resolveImageIndexBottle() {
+    if (this.percentageBottle == 0) {
+      return 0;
     } else if (this.percentageBottle <= 20) {
       return 1;
     } else if (this.percentageBottle <= 40) {
@@ -93,7 +125,7 @@ resolveImageIndexBottle() {
 }
 
 class StatusBarCoin extends DrawableObject {
-  
+
   IMAGES = [
     'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/0.png',
     'img/7_statusbars/1_statusbar/1_statusbar_coin/orange/20.png',
@@ -104,6 +136,10 @@ class StatusBarCoin extends DrawableObject {
   ]
   percentageCoin = 0;
 
+  /**
+   * Constructor function that initializes the object with default values and sets the percentage coin.
+   *
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
@@ -114,34 +150,46 @@ class StatusBarCoin extends DrawableObject {
     this.setPercentageCoin(0);
   }
 
-  
+
+  /**
+   * Set percentage coin and update related image.
+   *
+   * @param {type} percentageCoin - the percentage of the coin
+   */
   setPercentageCoin(percentageCoin) {
-    this.percentageCoin = percentageCoin; // => 0...5
+    this.percentageCoin = percentageCoin;
     let path = this.IMAGES[this.resolveImageIndexCoin()];
     this.img = this.imageCache[path];
   }
 
-resolveImageIndexCoin() {
-  if(this.percentageCoin == 100) {
-    return 5; 
-   } else if (this.percentageCoin == 0) {
-     return 0; 
-   }else if (this.percentageCoin <= 20) {
+
+  /**
+   * A description of the entire function.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
+  resolveImageIndexCoin() {
+    if (this.percentageCoin == 100) {
+      return 5;
+    } else if (this.percentageCoin == 0) {
+      return 0;
+    } else if (this.percentageCoin <= 20) {
       return 1;
-   } else if (this.percentageCoin <= 40) {
-     return 2;
-   } else if (this.percentageCoin <= 60) {
-     return 3;
-   } else if (this.percentageCoin <= 80) {
-     return 4;
-   } else {
-     return 1;
-   }
- }
+    } else if (this.percentageCoin <= 40) {
+      return 2;
+    } else if (this.percentageCoin <= 60) {
+      return 3;
+    } else if (this.percentageCoin <= 80) {
+      return 4;
+    } else {
+      return 1;
+    }
+  }
 }
 
 class StatusBarEndboss extends DrawableObject {
-  
+
   IMAGES = [
     'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
     'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
@@ -152,6 +200,10 @@ class StatusBarEndboss extends DrawableObject {
   ]
   percentageEndboss = 100;
 
+  
+  /**
+   * Constructor function to initialize the object.
+   */
   constructor() {
     super();
     this.loadImages(this.IMAGES);
@@ -162,26 +214,39 @@ class StatusBarEndboss extends DrawableObject {
     this.setPercentageEndboss(100);
   }
 
-  //setPercentage(50);
+
+  /**
+   * Set the percentage of the end boss.
+   *
+   * @param {type} percentageEndboss - the percentage of the end boss
+   * @return {type} undefined
+   */
   setPercentageEndboss(percentageEndboss) {
-    this.percentageEndboss = percentageEndboss; // => 0...5
+    this.percentageEndboss = percentageEndboss;
     let path = this.IMAGES[this.resolveImageIndexEndboss()];
     this.img = this.imageCache[path];
   }
 
+  
+  /**
+   * A description of the entire function.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   resolveImageIndexEndboss() {
-    if(this.percentageEndboss == 100) {
-      return 5; 
-     } else if (this.percentageEndboss >= 80) {
-       return 4;
-     } else if (this.percentageEndboss >= 60) {
-       return 3;
-     } else if (this.percentageEndboss >= 40) {
-       return 2;
-     } else if (this.percentageEndboss >= 20) {
-       return 1;
-     } else {
-       return 0;
-     }
-   }
- }
+    if (this.percentageEndboss == 100) {
+      return 5;
+    } else if (this.percentageEndboss >= 80) {
+      return 4;
+    } else if (this.percentageEndboss >= 60) {
+      return 3;
+    } else if (this.percentageEndboss >= 40) {
+      return 2;
+    } else if (this.percentageEndboss >= 20) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+}
