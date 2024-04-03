@@ -26,7 +26,6 @@ class World {
   collectbottle_sound = new Audio('./audio/collectbottle.mp3');
 
 
-
   /**
    * Initializes a new instance of the class.
    *
@@ -63,6 +62,7 @@ class World {
     }, 300);
     setInterval(() => {
       this.checkEndbossGetHit()
+      this.checkCharacterPositionEndboss();
     }, 200);
     setInterval(() => {
       this.checkCollisions();
@@ -395,4 +395,23 @@ class World {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+
+
+  /**
+   * Checks the character position relative to the endboss and makes the endboss move accordingly.
+   *
+   */
+checkCharacterPositionEndboss() {
+  const endboss = this.level.endboss[0]; 
+  if (endboss && !endboss.isDead) {
+    if (this.character.x > endboss.x + endboss.width) {
+      endboss.otherDirection = true;
+      endboss.moveLeft();
+    } else if (this.character.x < endboss.x + 100) {
+      endboss.otherDirection = false;
+      endboss.moveRight();
+    }
+  }
+}
+  
 }

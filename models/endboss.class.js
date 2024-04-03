@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
   aggressive = false;
   endbossImmune = false;
   energyEndboss = 100;
+  otherDirection = false;
   height = 400;
   width = 280;
   y = 60;
@@ -17,7 +18,7 @@ class Endboss extends MovableObject {
     top: 150,
     bottom: 100,
     left: 45,
-    right: 0
+    right: 30
   }
 
   IMAGES_WALKING = [
@@ -92,7 +93,11 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
-  
+
+
+
+
+
   /**
    * Executes the hitBottleEndboss function, which sets inDamage to true and then sets it to false after 400 milliseconds.
    */
@@ -111,6 +116,7 @@ class Endboss extends MovableObject {
     if (!this.endbossImmune) {
       this.endbossImmune = true;
       this.energyEndboss -= 20;
+      this.speed += 0.3; // Geschwindigkeit um 0.1 erhöhen
       if (this.energyEndboss < 0) {
         this.energyEndboss = 0;
         this.isDeadEndboss();
@@ -123,6 +129,7 @@ class Endboss extends MovableObject {
     }
     this.checkAngryEndboss();
   }
+  
 
   
   /**
@@ -133,7 +140,6 @@ class Endboss extends MovableObject {
   checkAngryEndboss() {
     if (this.energyEndboss <= 20) {
       this.isAlert = true;
-      this.speed = 0
       this.moveLeftAngry = false;
       setTimeout(() => {
         if (!mainSound) {
@@ -149,13 +155,22 @@ class Endboss extends MovableObject {
   }
 
 
-  /**
-   * move the endboss angry to the left
-   *
-   */
-  moveLeftEndbossAngry() {
-    this.x -= this.speedAngry;
-  }
+/**
+ * move the endboss angry to the left
+ *
+ */
+moveLeftEndbossAngry() {
+  this.x -= this.speedAngry;
+}
+
+
+/**
+ * move the endboss angry to the right
+ */
+moveRightEndbossAngry() {
+  this.x += this.speedAngry;
+}
+
 
   /**
    * Checks if the Endboss is dead based on the energy level.
@@ -176,19 +191,32 @@ class Endboss extends MovableObject {
   }
   
 
+
   /**
-   * Set up an interval for movement actions based on conditions.
-   */
-  setupMovementInterval() {
-    setInterval(() => {
-      if (this.moveLeftAngry) {
+ * Set up an interval for movement actions based on conditions.
+ */
+setupMovementInterval() {
+  setInterval(() => {
+    if (this.isAlert) {
+      this.speed = 0;
+      return;
+    }
+    if (this.moveLeftAngry) {
+      if (this.otherDirection) {
+        this.moveRightEndbossAngry();
+      } else {
         this.moveLeftEndbossAngry();
+      }
+    } else {
+      if (this.otherDirection) {
+        this.moveRight();
       } else {
         this.moveLeft();
       }
-    }, 1000 / 60);
-  }
-  
+    }
+  }, 1000 / 60);
+}
+
   
   /**
    * Set up and start an interval to update the character state periodically.
