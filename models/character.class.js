@@ -84,6 +84,15 @@ class Character extends MovableObject {
 
   world;
   walking_sound = new Audio("audio/running.mp3");
+
+
+  /**
+   * Constructor function that loads images for character animation,
+   * applies gravity, and starts the animation.
+   *
+   * @param {void}
+   * @return {void}
+   */
   constructor() {
     super().loadImage("img/2_character_pepe/2_walk/W-21.png");
     this.loadImages(this.IMAGES_WALKING);
@@ -96,66 +105,122 @@ class Character extends MovableObject {
     this.animate();
   }
 
+
+  /**
+   * Call the necessary methods to animate the scene.
+   *
+   */
   animate() {
     setInterval(() => {
-      this.walking_sound.pause();
-      if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-        this.otherDirection = false;
-        if (!mainSound) {
-          this.walking_sound.play();
-        }
-      }
-      if (this.world.keyboard.LEFT && this.x > 0) {
-        this.moveLeft();
-        this.otherDirection = true;
-        if (!mainSound) {
-          this.walking_sound.play();
-        }
-      }
-
-      if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-        this.jump();
-      }
-
-      this.world.camera_x = -this.x + 100;
-
+      this.handleMovement();
+      this.handleActions();
+      this.updateCamera();
     }, 1000 / 60);
-
+  
     setInterval(() => {
-      if (this.isDead()) {
-        if (this.isDead()) {
-          this.playAnimation(this.IMAGES_DEAD);
-          setTimeout(() => {
-            gameOver();
-          }, 600);
-        }
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
-        this.setNewTimePassed();
-      } else if (this.isAboveGround()) {
-        this.playAnimation(this.IMAGES_JUMPING);
-        this.setNewTimePassed();
-      } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
-        const timePassed = this.timePassedSinceLastAction();
-        if (timePassed >= 4) {
-          this.playAnimation(this.IMAGES_SLEEPING);
-        } else {
-          this.playAnimation(this.IMAGES_IDLE);
-        }
-      } else {
-        this.playAnimation(this.IMAGES_WALKING);
-        this.setNewTimePassed();
-      }
+      this.updateCharacterState();
     }, 100);
   }
+  
+  
+  /**
+   * A description of the entire function.
+   *
+   */
+  handleMovement() {
+    this.walking_sound.pause();
+  
+    if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+      this.moveRight();
+      this.otherDirection = false;
+      if (!mainSound) {
+        this.walking_sound.play();
+      }
+    }
+  
+    if (this.world.keyboard.LEFT && this.x > 0) {
+      this.moveLeft();
+      this.otherDirection = true;
+      if (!mainSound) {
+        this.walking_sound.play();
+      }
+    }
+  }
+  
+
+  /**
+   * A description of the entire function.
+   *
+   */
+  handleActions() {
+    if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+      this.jump();
+    }
+  }
+  
+
+  /**
+   * Updates the camera position based on the current x position.
+   */
+  updateCamera() {
+    this.world.camera_x = -this.x + 100;
+  }
+  
+  
+  /**
+   * Update character state based on different conditions.
+   */
+  updateCharacterState() {
+    if (this.isDead()) {
+      this.playAnimation(this.IMAGES_DEAD);
+      setTimeout(() => {
+        gameOver();
+      }, 600);
+    } else if (this.isHurt()) {
+      this.playAnimation(this.IMAGES_HURT);
+      this.setNewTimePassed();
+    } else if (this.isAboveGround()) {
+      this.playAnimation(this.IMAGES_JUMPING);
+      this.setNewTimePassed();
+    } else if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT) {
+      const timePassed = this.timePassedSinceLastAction();
+      this.playIdleOrSleep(timePassed);
+    } else {
+      this.playAnimation(this.IMAGES_WALKING);
+      this.setNewTimePassed();
+    }
+  }
+  
+
+  /**
+   * A function that determines which animation to play based on the time passed.
+   *
+   * @param {number} timePassed - The amount of time that has passed.
+   */
+  playIdleOrSleep(timePassed) {
+    if (timePassed >= 4) {
+      this.playAnimation(this.IMAGES_SLEEPING);
+    } else {
+      this.playAnimation(this.IMAGES_IDLE);
+    }
+  }
+  
+
+  /**
+   * Set a new time passed by assigning the current timestamp to the 'timePassed' property.
+   */
   setNewTimePassed() {
     this.timePassed = new Date().getTime();
   }
+  
+
+  /**
+   * A function that calculates the time passed since the last action.
+   *
+   * @return {number} The time passed since the last action in seconds.
+   */
   timePassedSinceLastAction() {
-    let timePassed = new Date().getTime() - this.timePassed;
-    timePassed = timePassed / 1000;
-    return timePassed;
+    return (new Date().getTime() - this.timePassed) / 1000;
   }
 
 }

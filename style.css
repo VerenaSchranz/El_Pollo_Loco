@@ -27,6 +27,7 @@ body {
 .hide {
   display: none !important;
 }
+
 /*Loader*/
 .loader-container {
   display: flex;

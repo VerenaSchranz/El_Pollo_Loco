@@ -19,14 +19,14 @@ class Endboss extends MovableObject {
     left: 45,
     right: 0
   }
-  
+
   IMAGES_WALKING = [
     'img/4_enemie_boss_chicken/1_walk/G1.png',
     'img/4_enemie_boss_chicken/1_walk/G2.png',
     'img/4_enemie_boss_chicken/1_walk/G3.png',
     'img/4_enemie_boss_chicken/1_walk/G4.png'
   ];
-  
+
   IMAGES_IDLE = [
     'img/4_enemie_boss_chicken/2_alert/G5.png',
     'img/4_enemie_boss_chicken/2_alert/G6.png',
@@ -37,7 +37,7 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/2_alert/G11.png',
     'img/4_enemie_boss_chicken/2_alert/G12.png'
   ];
-  
+
   IMAGES_ATTACK = [
     'img/4_enemie_boss_chicken/3_attack/G13.png',
     'img/4_enemie_boss_chicken/3_attack/G14.png',
@@ -48,13 +48,13 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/3_attack/G19.png',
     'img/4_enemie_boss_chicken/3_attack/G20.png'
   ];
-  
+
   IMAGES_HURT = [
     'img/4_enemie_boss_chicken/4_hurt/G21.png',
     'img/4_enemie_boss_chicken/4_hurt/G22.png',
     'img/4_enemie_boss_chicken/4_hurt/G23.png'
   ];
-  
+
   IMAGES_DEAD = [
     'img/4_enemie_boss_chicken/5_dead/G24.png',
     'img/4_enemie_boss_chicken/5_dead/G25.png',
@@ -72,6 +72,14 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/2_alert/G12.png',
 
   ];
+
+  
+  /**
+   * Constructor function that initializes the object with various images and starting position.
+   *
+   * @param {type} paramName - description of parameter
+   * @return {type} description of return value
+   */
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]);
     this.loadImages(this.IMAGES_WALKING);
@@ -83,13 +91,22 @@ class Endboss extends MovableObject {
     this.moveLeftAngry = false;
     this.animate();
   }
-  hitBottleEndboss(){
+
+  
+  /**
+   * Executes the hitBottleEndboss function, which sets inDamage to true and then sets it to false after 400 milliseconds.
+   */
+  hitBottleEndboss() {
     this.inDamage = true;
     setTimeout(() => {
       this.inDamage = false;
     }, 400);
   }
+
   
+  /**
+   * Minus energy from the endboss, making it immune if not already, and checking if it's dead.
+   */
   minusEnergyEndboss() {
     if (!this.endbossImmune) {
       this.endbossImmune = true;
@@ -106,10 +123,16 @@ class Endboss extends MovableObject {
     }
     this.checkAngryEndboss();
   }
+
   
+  /**
+   * Checks if the energy level of the endboss is below or equal to 20 and sets the isAlert flag to true. 
+   * Also sets the speed to 0, moveLeftAngry to false, and plays an alert sound. 
+   * After 1500ms, sets the isAlert flag to false and moveLeftAngry to true. 
+   */
   checkAngryEndboss() {
-    if (this.energyEndboss <= 20) { 
-      this.isAlert = true; 
+    if (this.energyEndboss <= 20) {
+      this.isAlert = true;
       this.speed = 0
       this.moveLeftAngry = false;
       setTimeout(() => {
@@ -120,49 +143,93 @@ class Endboss extends MovableObject {
       setTimeout(() => {
         this.isAlert = false;
         this.moveLeftAngry = true;
-       
+
       }, 1500);
     }
   }
-  
-  
-  moveLeftEndbossAngry () {
+
+
+  /**
+   * move the endboss angry to the left
+   *
+   */
+  moveLeftEndbossAngry() {
     this.x -= this.speedAngry;
   }
-  
+
+  /**
+   * Checks if the Endboss is dead based on the energy level.
+   */
   isDeadEndboss() {
     if (this.energyEndboss <= 0) {
       this.isDead = true;
     }
   }
-  
+
+
+  /**
+   * A method to animate the component.
+   */
   animate() {
+    this.setupMovementInterval();
+    this.setupStateInterval();
+  }
+  
+
+  /**
+   * Set up an interval for movement actions based on conditions.
+   */
+  setupMovementInterval() {
     setInterval(() => {
-      if(this.moveLeftAngry) {
+      if (this.moveLeftAngry) {
         this.moveLeftEndbossAngry();
       } else {
         this.moveLeft();
       }
     }, 1000 / 60);
-    
+  }
+  
+  
+  /**
+   * Set up and start an interval to update the character state periodically.
+   */
+  setupStateInterval() {
     setInterval(() => {
-      if (this.isDead) {
-        this.playAnimation(this.IMAGES_DEAD);
-        if (!mainSound) {
-          this.endbossdead_sound.cloneNode(true).play();
-        }
-        setTimeout(() => {
-          winGame();
-        }, 700);
-      } else if (this.aggressive) {
-        this.playAnimation(this.IMAGES_ATTACK);
-      } else if (this.isAlert) {
-        this.playAnimation(this.IMAGES_ALERT);
-      } else if (this.inDamage) {
-        this.playAnimation(this.IMAGES_HURT);
-      } else {
-        this.playAnimation(this.IMAGES_WALKING);
-      }
+      this.updateCharacterState();
     }, 9000 / 60);
   }
+  
+  
+  /**
+   * Update the character state based on certain conditions.
+   */
+  updateCharacterState() {
+    if (this.isDead) {
+      this.handleCharacterDead();
+    } else if (this.aggressive) {
+      this.playAnimation(this.IMAGES_ATTACK);
+    } else if (this.isAlert) {
+      this.playAnimation(this.IMAGES_ALERT);
+    } else if (this.inDamage) {
+      this.playAnimation(this.IMAGES_HURT);
+    } else {
+      this.playAnimation(this.IMAGES_WALKING);
+    }
+  }
+  
+  
+  /**
+   * Handles the character when it is dead.
+   *
+   */
+  handleCharacterDead() {
+    this.playAnimation(this.IMAGES_DEAD);
+    if (!mainSound) {
+      this.endbossdead_sound.cloneNode(true).play();
+    }
+    setTimeout(() => {
+      winGame();
+    }, 700);
+  }
+  
 }

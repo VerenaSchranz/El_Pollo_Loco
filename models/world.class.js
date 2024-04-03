@@ -42,12 +42,14 @@ class World {
     this.run();
   }
 
+
   /**
    * Set the world for the character.
    */
   setWorld() {
     this.character.world = this;
   }
+
 
   /**
    * Runs multiple setInterval functions to check for various game conditions periodically.
@@ -96,6 +98,7 @@ class World {
     this.checkBottleCollisions();
   }
 
+
   /**
    * Checks for collisions with enemies and handles the character's actions accordingly.
    */
@@ -112,6 +115,7 @@ class World {
       }
     });
   }
+
 
   /**
    * Handles collision between character and enemy.
@@ -132,6 +136,7 @@ class World {
     }
   }
 
+
   /**
    * Check for collision with the end boss and handle character hit accordingly.
    */
@@ -143,6 +148,7 @@ class World {
       }
     });
   }
+
 
   /**
    * Checks for coin collisions and collects the coins if a collision is detected.
@@ -157,6 +163,7 @@ class World {
       }
     });
   }
+
 
   /**
    * Collects a coin and updates the player's energy and the game state.
@@ -173,6 +180,7 @@ class World {
     this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
   }
 
+
   /**
    * Checks for collisions between the character and collectable bottles, and collects the bottle if the character is colliding and has less than 100 energy.
    *
@@ -185,6 +193,7 @@ class World {
       }
     });
   }
+
 
   /**
    * Collects a bottle and updates the game state accordingly.
@@ -292,6 +301,7 @@ class World {
       });
     });
   }
+  
 
   /**
    * Function to draw the game elements on the canvas.
