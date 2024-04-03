@@ -127,7 +127,9 @@ class World {
   handleJumpEnemyCollision(enemy, index) {
     if (!enemy.isDead) {
       this.character.immune = true;
-      this.dead_sound.cloneNode(true).play();
+      if (!mute) {
+        this.dead_sound.cloneNode(true).play();
+      }
       setTimeout(() => {
         this.level.enemies.splice(index, 1);
         this.character.immune = false;
@@ -175,7 +177,9 @@ class World {
   collectCoin(coins, index) {
     this.character.addEnergyCoin();
     this.addedCoins.push({ coin: coins, index: index });
-    this.collectcoin_sound.cloneNode(true).play();
+    if (!mute) {
+      this.collectcoin_sound.cloneNode(true).play();
+    }
     this.level.collectableCoins.splice(index, 1);
     this.statusBarCoin.setPercentageCoin(this.character.energyCoin);
   }
@@ -204,7 +208,9 @@ class World {
   collectBottle(bottle, index) {
     this.character.addEnergyBottle();
     this.addedBottles.push({ bottle: bottle, index: index });
-    this.collectbottle_sound.cloneNode(true).play();
+    if (!mute) {
+      this.collectbottle_sound.cloneNode(true).play();
+    }
     this.level.collectableBottles.splice(index, 1);
     this.statusBarBottle.setPercentageBottle(this.character.energyBottle);
   }
@@ -286,8 +292,9 @@ class World {
           if (!enemy.isDead) {
             enemy.isDead = true;
             setTimeout(() => {
-              
-              this.dead_sound.play();
+              if (!mute) {
+                this.dead_sound.play();
+              }
               this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
             }, 300);
           }
