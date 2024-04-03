@@ -43,8 +43,8 @@ drawFrame(ctx) {
     this instanceof Smallchicken
   ) {
     ctx.beginPath();
-    ctx.lineWidth = "0";
-    ctx.strokeStyle = "transparent";
+    ctx.lineWidth = "3";
+    ctx.strokeStyle = "deeppink";
     ctx.rect(
       this.x + this.offset.left,
       this.y + this.offset.top,
