@@ -66,8 +66,6 @@ class World {
     }, 200);
     setInterval(() => {
       this.checkCollisions();
-      this.checkCollisionsWithGround();
-      this.checkCollisionThrowableWithChicken();
     }, 25);
   }
 
@@ -96,6 +94,8 @@ class World {
     this.checkEndbossCollision();
     this.checkCoinCollisions();
     this.checkBottleCollisions();
+    this.checkCollisionsWithGround();
+    this.checkCollisionThrowableWithChicken();
   }
 
 
