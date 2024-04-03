@@ -116,7 +116,7 @@ class Endboss extends MovableObject {
     if (!this.endbossImmune) {
       this.endbossImmune = true;
       this.energyEndboss -= 20;
-      this.speed += 0.3; // Geschwindigkeit um 0.1 erhöhen
+      this.speed += 0.3;
       if (this.energyEndboss < 0) {
         this.energyEndboss = 0;
         this.isDeadEndboss();
@@ -130,7 +130,6 @@ class Endboss extends MovableObject {
     this.checkAngryEndboss();
   }
   
-
   
   /**
    * Checks if the energy level of the endboss is below or equal to 20 and sets the isAlert flag to true. 
