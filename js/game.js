@@ -38,6 +38,9 @@ async function showLoadingScreen() {
 }
 
 
+/**
+ * Closes the start screen, game over screen, and info button while displaying the canvas.
+ */
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('gameOverScreen').classList.add('d-none');
@@ -46,6 +49,10 @@ function startScreenClose() {
 }
 
 
+/**
+ * Function to navigate back to the main menu.
+ *
+ */
 function backToMenu() {
   document.getElementById('startScreen').classList.remove('d-none');
   document.getElementById('infoBtn').classList.remove('d-none');
@@ -67,6 +74,7 @@ function gameOver() {
   backgroundMusic.pause();
 }
 
+
 /**
  * Function to display the win game screen, stop the game, hide the mute button, and pause the background music.
  *
@@ -79,6 +87,7 @@ function winGame() {
   document.getElementById("mute").classList.add('d-none');
   backgroundMusic.pause();
 }
+
 
 /**
  * Restarts the game by creating a new World object, hiding the game over and win game screens,
@@ -134,6 +143,7 @@ function playBackgroundMusic() {
   }
 }
 
+
 /**
  * Toggles the mute state of the main sound and background sound.
  *
@@ -144,6 +154,7 @@ function toggleMute() {
   playBackgroundMusic();
   updateMuteIcon();
 }
+
 
 /**
  * Updates the mute icon based on the current state of the background sound.
