@@ -387,13 +387,11 @@ canvas {
   z-index: -1;
 }
 
-@media (max-width: 720px) and (orientation: landscape) {
+
+@media (max-width: 1024px) and (orientation: landscape) {
   .overlayMobile {
     display: none;
   }
-}
-
-@media (max-width: 720px) {
   h1 {
     display: none;
   }
@@ -402,8 +400,20 @@ canvas {
   }
 }
 
+@media (max-width: 720px) {
+  h1 {
+    display: none;
+  }
+  /* .btn-mobile-wrapper { */
+    /* display: flex; */
+  /* } */
+}
+
 @media (min-width: 800px) {
   .overlayMobile {
+    display: none;
+  }
+  h1 {
     display: none;
   }
 
@@ -426,7 +436,7 @@ canvas {
   .game-container,
   .flex-container,
   canvas {
-    width: 100vw;
+    max-width: 720px;
   }
   .game-container {
     overflow: hidden;
