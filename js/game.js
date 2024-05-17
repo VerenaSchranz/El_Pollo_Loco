@@ -44,6 +44,7 @@ async function showLoadingScreen() {
 function startScreenClose() {
   document.getElementById('startScreen').classList.add('d-none');
   document.getElementById('gameOverScreen').classList.add('d-none');
+  document.getElementById("btnMobileWrapper").classList.remove('d-none');
   document.getElementById('infoBtn').classList.add('d-none');
   document.getElementById('canvas').classList.remove('d-none');
 }
@@ -69,6 +70,7 @@ function backToMenu() {
  */
 function gameOver() {
   document.getElementById("gameOverScreen").classList.remove('d-none');
+  document.getElementById("btnMobileWrapper").classList.add('d-none');
   stopGame();
   document.getElementById("mute").classList.add('d-none');
   backgroundMusic.pause();
@@ -85,6 +87,7 @@ function winGame() {
   document.getElementById("winGameScreen").classList.remove('d-none');
   stopGame();
   document.getElementById("mute").classList.add('d-none');
+  document.getElementById("btnMobileWrapper").classList.add('d-none');
   backgroundMusic.pause();
 }
 

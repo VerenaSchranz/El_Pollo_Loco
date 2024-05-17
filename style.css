@@ -401,6 +401,9 @@ canvas {
   z-index: -1;
 }
 
+.btn-mobile-wrapper.d-none {
+display: none;
+}
 
 @media (max-width: 1024px) and (orientation: landscape) {
   .overlayMobile {
